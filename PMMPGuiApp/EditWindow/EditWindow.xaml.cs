@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace PMMPGuiApp {
+namespace PMMPGuiApp.EditWindow {
     /// <summary>
     /// EditWindow.xaml の相互作用ロジック
     /// </summary>

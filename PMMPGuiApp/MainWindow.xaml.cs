@@ -1,4 +1,6 @@
 ﻿using Microsoft.Win32;
+using PMMPGuiApp.PoggitWindow;
+using PMMPGuiApp.EditWindow;
 using PMMPGuiApp.Data;
 using System;
 using System.ComponentModel;
@@ -166,20 +168,42 @@ namespace PMMPGuiApp {
 
         }
 
-        
+
         private void SelectPlugin_Click(object sender, RoutedEventArgs e) {
-            OpenFileDialog open = new OpenFileDialog() {
-                Title = "プラグインを選択してください",
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                Filter = "Pharファイル|*.phar",
-            };
+            if (!isOpenPMMP()) {
+                OpenFileDialog open = new OpenFileDialog() {
+                    Title = "プラグインを選択してください",
+                    InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    Filter = "Pharファイル|*.phar",
+                };
 
-            if (open.ShowDialog() != true) {
-                return;
+                if (open.ShowDialog() != true) {
+                    return;
+                }
+
+                File.Move(open.FileName, path + @"\plugins\" + Path.GetFileName(open.FileName));
+                textboxApeendToAddTimestamp(Path.GetFileNameWithoutExtension(open.FileName) + "を導入しました");
+            } else {
+                MessageBox.Show("PMMP実行中にはダウンロードできません。PMMPを停止してください。", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
 
-            File.Move(open.FileName, path + @"\plugins\" + Path.GetFileName(open.FileName));
-            textboxApeendToAddTimestamp(Path.GetFileNameWithoutExtension(open.FileName) + "を導入しました");
+        private void SearchPoggit_Click(object sender, RoutedEventArgs e) {
+            if (!isOpenPMMP()) {
+                PoggitWindow.PoggitWindow window = new();
+                window.Owner = this;
+                window.ShowDialog();
+            } else {
+                MessageBox.Show("PMMP実行中にはダウンロードできません。PMMPを停止してください。", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void Poggit_Click(object sender, RoutedEventArgs e) {
+            Process.Start(new ProcessStartInfo("cmd", $"/c start https://poggit.pmmp.io") { CreateNoWindow = true });
+        }
+
+        private void Forum_Click(object sender, RoutedEventArgs e) {
+            Process.Start(new ProcessStartInfo("cmd", $"/c start https://forum.mcbe.jp/resources/categories/2/") { CreateNoWindow = true });
         }
 
         private void other_Click(object sender, RoutedEventArgs e) {
@@ -237,46 +261,54 @@ namespace PMMPGuiApp {
         }
 
         private bool pmmpInstall() {
-            using (PowerShell powerShell = PowerShell.Create()) {
-                string pmmpUrl = "https://jenkins.pmmp.io/job/PocketMine-MP/lastSuccessfulBuild/artifact/PocketMine-MP.phar";
-                string startUrl = "https://jenkins.pmmp.io/job/PocketMine-MP/lastBuild/artifact/start.cmd";
-                string binUrl = "https://jenkins.pmmp.io/job/PHP-7.4-Aggregate/lastBuild/artifact/PHP-7.4-Windows-x64.zip";
-                string composerjsonUrl = "https://raw.githubusercontent.com/pmmp/PocketMine-MP/stable/composer.json";
-                string composerUrl = "https://getcomposer.org/download/latest-stable/composer.phar";
-                string zipUrl = path + @"\PHP-7.4-Windows-x64.zip";
-                string processUri = path + @"\vc_redist.x64.exe";
-                if (!Environment.Is64BitProcess) {
-                    MessageBox.Show("32bitのwindowsではPMMPを動かすことができません！", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
-                }
-                DateTime start = DateTime.Now;
-                System.Net.WebClient wc = new System.Net.WebClient();
-                useTextBoxInAsync("PocketMine-MPダウンロード中..." + "\n", true);
-                wc.DownloadFile(pmmpUrl, path + @"\PocketMine-MP.phar");
-                if (!File.Exists(path + @"\bin\php\php.exe")) {
-                    useTextBoxInAsync("バッチファイルダウンロード中..." + "\n", true);
-                    wc.DownloadFile(startUrl, path + @"\start.cmd");
-                    useTextBoxInAsync("バイナリダウンロード中..." + "\n", true);
-                    wc.DownloadFile(binUrl, path + @"\PHP-7.4-Windows-x64.zip");
-                    useTextBoxInAsync("バイナリの解凍中..." + "\n", true);
-                    ZipFile.ExtractToDirectory(zipUrl, path);
-                    File.Delete(zipUrl);
-                    useTextBoxInAsync("Windowsランタイムインストーラーが起動します\nインストールをお願いします。" + "\n", true);
-                    Process.Start(processUri);
-                    useTextBoxInAsync("composer関連ファイルダウンロード中..." + "\n", true);
-                    wc.DownloadFile(composerjsonUrl, path + @"\composer.json");
-                    wc.DownloadFile(composerUrl, path + @"\bin\composer.phar");
-                    wc.Dispose();
-                    useTextBoxInAsync("composerインストール中......" + "\n", true);
-                    composerInstall("cd " + path, powerShell);
-                    composerInstall(@"bin\php\php.exe bin\composer.phar install", powerShell);
+            string[] urls = new string[] {
+                "https://jenkins.pmmp.io/job/PocketMine-MP/lastSuccessfulBuild/artifact/PocketMine-MP.phar",
+                "https://jenkins.pmmp.io/job/PocketMine-MP/lastBuild/artifact/start.cmd",
+                "https://jenkins.pmmp.io/job/PHP-7.4-Aggregate/lastBuild/artifact/PHP-7.4-Windows-x64.zip",
+                "https://raw.githubusercontent.com/pmmp/PocketMine-MP/stable/composer.json",
+                "https://getcomposer.org/download/latest-stable/composer.phar",
+                path + @"\PHP-7.4-Windows-x64.zip",
+                path + @"\vc_redist.x64.exe"
+            };
 
-                    powerShell.Stop();
-                }
-                DateTime end = DateTime.Now;
-                TimeSpan ts = end - start;
-                useTextBoxInAsync("\"" + path + "\"に" + "インストールが完了しました。(" + ts.TotalSeconds + "秒)\n\n", true);
+            if (!Environment.Is64BitProcess) {
+                MessageBox.Show("32bitのwindowsではPMMPを動かすことができません！", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
+
+            DateTime start = DateTime.Now;
+
+            using (System.Net.WebClient wc = new()) {
+
+                useTextBoxInAsync("PocketMine-MPダウンロード中..." + "\n", true);
+                wc.DownloadFile(urls[0], path + @"\PocketMine-MP.phar");
+
+                if (!File.Exists(path + @"\bin\php\php.exe")) {
+                    using (PowerShell powerShell = PowerShell.Create()) {
+                        useTextBoxInAsync("バッチファイルダウンロード中..." + "\n", true);
+                        wc.DownloadFile(urls[1], path + @"\start.cmd");
+                        useTextBoxInAsync("バイナリダウンロード中..." + "\n", true);
+                        wc.DownloadFile(urls[2], path + @"\PHP-7.4-Windows-x64.zip");
+                        useTextBoxInAsync("バイナリの解凍中..." + "\n", true);
+                        ZipFile.ExtractToDirectory(urls[5], path);
+                        File.Delete(urls[5]);
+                        useTextBoxInAsync("Windowsランタイムインストーラーが起動します。手動でのインストールをお願いします。" + "\n", true);
+                        Process.Start(urls[6]);
+                        useTextBoxInAsync("composer関連ファイルダウンロード中..." + "\n", true);
+                        wc.DownloadFile(urls[3], path + @"\composer.json");
+                        wc.DownloadFile(urls[4], path + @"\bin\composer.phar");
+                        wc.Dispose();
+                        useTextBoxInAsync("composerインストール中......" + "\n", true);
+                        composerInstall("cd " + path, powerShell);
+                        composerInstall(@"bin\php\php.exe bin\composer.phar install", powerShell);
+                        powerShell.Stop();
+                    }
+                }
+            }
+
+            DateTime end = DateTime.Now;
+            TimeSpan ts = end - start;
+            useTextBoxInAsync("\"" + path + "\"に" + "インストールが完了しました。(" + ts.TotalSeconds + "秒)\n\n", true);
             return false;
         }
 
@@ -299,9 +331,7 @@ namespace PMMPGuiApp {
             powerShell.Commands = psCommand;
             try {
                 powerShell.Invoke();
-            } catch (CommandNotFoundException) {
-
-            }
+            } catch (CommandNotFoundException) { }
         }
 
         private void sendPMMPCommand() {

@@ -26,9 +26,17 @@
                     <MenuItem Header="サーバーを強制終了する" Click="KillPMMP_Click"/>
                 </MenuItem>
                 <MenuItem Header="ツール(_T)">
-                    <MenuItem Header="プラグインを導入する">
-                        <MenuItem Header="ローカルファイルから選択" Click="SelectPlugin_Click" />
+                    <MenuItem Header="プラグイン">
+                        <MenuItem Header="導入する">
+                            <MenuItem Header="ローカルファイルから選択" Click="SelectPlugin_Click" />
+                            <MenuItem Header="poggitから探す" Click="SearchPoggit_Click" />
+                        </MenuItem>
+                        <MenuItem Header="探す">
+                            <MenuItem Header="poggitから探す(英語)" Click="Poggit_Click" />
+                            <MenuItem Header="MCBEForumから探す(日本語)" Click="Forum_Click" />
+                        </MenuItem>
                     </MenuItem>
+                    
                 </MenuItem>
                 <MenuItem Header="その他(_O)">
                     <MenuItem Header="バージョン情報" Click="other_Click"/>
