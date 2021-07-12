@@ -1,0 +1,98 @@
+﻿<Window x:Class="PMMPGuiApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Closing="MainWindow_Closing"
+        Title="PMMPGui" Height="795" Width="1060">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="ファイル(_F)">
+                    <MenuItem Header="PMMPをインストールする" Click="PMMPINSTALL_Click"/>
+                    <MenuItem Header="PMMPをアップデートする" Click="PMMPINSTALL_Click"/>
+                    <MenuItem Header="エクスプローラーで表示" Click="EX_Click"/>
+                    <Separator />
+                    <MenuItem Header="終了" Click="exit_click"/>
+                </MenuItem>
+                <MenuItem Header="編集(_E)">
+                    <MenuItem Header="サーバーの設定を変更" Click="Propeties_Click"/>
+                    <MenuItem Header="pocketmineの設定を変更" Click="PMMPOption_Click"/>
+                </MenuItem>
+                <MenuItem Header="実行(_D)">
+                    <MenuItem x:Name="MenuItem_open_button" Header="PMMPを実行する" Click="executePMMP_Click"/>
+                    <Separator />
+                    <MenuItem Header="サーバーを強制終了する" Click="KillPMMP_Click"/>
+                </MenuItem>
+                <MenuItem Header="ツール(_T)">
+                    <MenuItem Header="プラグインを導入する">
+                        <MenuItem Header="ローカルファイルから選択" Click="SelectPlugin_Click" />
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="その他(_O)">
+                    <MenuItem Header="バージョン情報" Click="other_Click"/>
+                </MenuItem>
+
+
+
+            </Menu>
+
+        </DockPanel>
+
+        <Grid RenderTransformOrigin="0.495,0.509" Margin="0,23,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            
+            <DockPanel Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <!--<Button Content="PMMPを起動する" Click="Button_Click_1" Height="Auto" Width="Auto" Margin="33,75,33,75"/>-->
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Button x:Name="open_button" Content="PMMPを起動する" Click="executePMMP_Click" Height="Auto" Width="Auto" Margin="33,75,33,75"/>
+                    </Grid>
+                </Grid>
+            </DockPanel>
+            
+            <DockPanel Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="14*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="0,0,10,10">
+                        <TextBox x:Name="Output_textbox"  Height="Auto" Width="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontSize="12" IsReadOnly="True" />
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="0,0,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBox x:Name="Input_textbox" Height="Auto" Width="Auto" FontSize="12" VerticalScrollBarVisibility="Disabled" Margin="0,10,0,10" PreviewKeyDown="Input_textbox_PreviewKeyDown"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Content="送信"  Height="Auto" Width="Auto" Click="Input_Click" Loaded="Button_Loaded" Margin="0,10,0,10"/>
+                        </Grid>
+                    </Grid>
+
+
+                </Grid>
+            </DockPanel>
+
+        </Grid>
+    </Grid>
+
+</Window>
