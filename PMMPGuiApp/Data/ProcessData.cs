@@ -1,12 +1,14 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 
 namespace PMMPGuiApp.Data {
-    class ProcessData {
+    internal class ProcessData {
 
-        private string path = Directory.GetParent(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\PMMPGuiApp";
+        private string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\yurisi\PMMPGuiApp";
 
         private int processID;
+
         public ProcessData() {
             Directory.CreateDirectory(path);
             if (!File.Exists(path + @"\PROCESS")) File.Create(path + @"\PROCESS");

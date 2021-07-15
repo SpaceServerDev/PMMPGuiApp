@@ -92,8 +92,10 @@ namespace PMMPGuiApp {
                     await Task.Run(() => {
                         process = new Process();
                         ProcessStartInfo info = new ProcessStartInfo();
-                        info.FileName = "cmd.exe";
-                        info.Arguments = "/C " + path + @"\start.cmd";
+                        //info.FileName = "cmd.exe";
+                        //info.Arguments = "/C " + path + @"\start.cmd";
+                        info.FileName = path+ @"\bin\php\php.exe";
+                        info.Arguments = "-c " + path + @"\bin\php " + path + "\\PocketMine-MP.phar";
                         info.RedirectStandardInput = true;
                         info.UseShellExecute = false;
                         info.RedirectStandardOutput = true;
@@ -117,7 +119,7 @@ namespace PMMPGuiApp {
                     open_button.Content = "PMMPを停止する";
                 } else {
                     process.StandardInput.WriteLine("stop");
-                    process.Kill();
+                    //process.Kill();
                     MenuItem_open_button.Header = "PMMPを起動する";
                     open_button.Content = "PMMPを起動する";
                 }
@@ -407,26 +409,28 @@ namespace PMMPGuiApp {
         private bool isOpenPMMP() {
             if (process == null) return false;
             try {
-                ManagementObjectSearcher mos = new(String.Format("Select * From Win32_Process Where ParentProcessID={0}", process.Id));
+                //ManagementObjectSearcher mos = new(String.Format("Select * From Win32_Process Where ParentProcessID={0}", process.Id));
 
-                foreach (ManagementObject mo in mos.Get()) {
-                    if (Process.GetProcessById(Convert.ToInt32(mo["ProcessID"])).ProcessName == "php") {
+                //foreach (ManagementObject mo in mos.Get()) {
+                    if (Process.GetProcessById(process.Id).ProcessName == "php") {
                         return true;
                     }
-                }
-            } catch (InvalidOperationException) {}
+                //}
+            } catch {}
             return false;
         }
 
         private int getPMMPProcessId() {
-            
-            ManagementObjectSearcher mos = new(String.Format("Select * From Win32_Process Where ParentProcessID={0}", process.Id));
 
-            foreach (ManagementObject mo in mos.Get()) {
-                if (Process.GetProcessById(Convert.ToInt32(mo["ProcessID"])).ProcessName == "php") {
-                    return Convert.ToInt32(mo["ProcessID"]);
+            //ManagementObjectSearcher mos = new(String.Format("Select * From Win32_Process Where ParentProcessID={0}", process.Id));
+
+            //foreach (ManagementObject mo in mos.Get()) {
+            try {
+                if (Process.GetProcessById(process.Id).ProcessName == "php") {
+                    return Convert.ToInt32(process.Id);
                 }
-            }
+                //}
+            } catch (InvalidOperationException) { }
             return -1;
         }
 

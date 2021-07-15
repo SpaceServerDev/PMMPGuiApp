@@ -59,5 +59,15 @@ namespace PMMPGuiApp.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap _1484 {
+            get {
+                object obj = ResourceManager.GetObject("_1484", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

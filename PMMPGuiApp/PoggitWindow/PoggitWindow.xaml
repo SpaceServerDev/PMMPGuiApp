@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PMMPGuiApp.PoggitWindow"
         mc:Ignorable="d"
         Title="PoggitPlugin" Height="450" Width="800"
+        Closing="PoggitWindow_Closing"
         ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
@@ -14,16 +14,17 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <ComboBox Margin="10,5,563,10" FontSize="12">
-                <ComboBoxItem>最新</ComboBoxItem>
-                <ComboBoxItem>ダウンロード数</ComboBoxItem>
+            <ComboBox x:Name="combo" Margin="10,5,563,10" FontSize="12">
                 <ComboBoxItem>名前順</ComboBoxItem>
+                <ComboBoxItem>ダウンロード数</ComboBoxItem>
+                <ComboBoxItem>最新</ComboBoxItem>
             </ComboBox>
             <TextBox Margin="363,5,86,10" FontSize="12"/>
             <Button Margin="714,5,15,10" Content="検索" RenderTransformOrigin="0.668,0.301" FontSize="12"/>
         </Grid>
 
         <Grid Grid.Row="1">
+            
             <ListView x:Name="PluginList" Loaded="PluginList_Loaded" Margin="10,0,10,10">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -33,18 +34,19 @@
                                 <ColumnDefinition Width="20*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <Image Source="{Binding image}" Width="40" Height="40"/>
+                                <Image Source="{Binding Image}" Width="40" Height="40"/>
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding name}" FontSize="25" />
-                            <TextBlock Text="{Binding tagline}" FontSize="15"/>
-                            <TextBlock Text="{Binding download,StringFormat=ダウンロード数: {0}}" FontSize="11"/>
+                            <TextBlock Text="{Binding Name}" FontSize="25" />
+                            <TextBlock Text="{Binding Tagline}" FontSize="15"/>
+                            <TextBlock Text="{Binding Download,StringFormat=ダウンロード数: {0}}" FontSize="11"/>
                             <Button Content="Download" HorizontalAlignment="Left" Command="{Binding ClickCommand}"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label x:Name="progress" Content="読込中..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Visibility="Visible" />
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -55,19 +57,19 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button Content="最初" Width="50"/>
+                <Button Content="最初" Width="50" Click="FirstButton_Click"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <Button Content="&lt;&lt;前" Width="50"/>
+                <Button Content="&lt;&lt;前" Width="50" Click="PrevButton_Click"/>
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <TextBlock Text="0/0" Width="50" TextAlignment="Center"/>
+                <TextBlock x:Name="pageText" Text="0/0" Width="50" TextAlignment="Center"/>
             </StackPanel>
             <StackPanel Grid.Column="3">
-                <Button Content="次>>" Width="50"/>
+                <Button Content="次>>" Width="50" Click="NextButton_Click"/>
             </StackPanel>
             <StackPanel Grid.Column="4">
-                <Button Content="最後" Width="50"/>
+                <Button Content="最後" Width="50" Click="LastButton_Click"/>
             </StackPanel>
         </Grid>
     </Grid>
