@@ -1,62 +1,95 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using GalaSoft.MvvmLight.CommandWpf;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
+using System.Text;
+using System.Windows.Input;
 
 namespace PMMPGuiApp.Data {
     internal class PoggitData {
+
+        private string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\yurisi\PMMPGuiApp";
 
         private List<PoggitListData> poggitList = new();
 
         private int maxValue;
 
+        private MainWindow window;
+
+        public PoggitData(MainWindow window) {
+            this.window = window;
+        }
+
 
         public void setList() {
-            var url = DownloadString(@"https://poggit.pmmp.io/plugins.min.json");
-            JArray jsondata = JArray.Parse(url);
+            JArray jsondata;
+            if (!File.Exists(path + @"\PoggitData.data")) {
+               DownloadString();
+            }
+
+            using (StreamReader reader = new(path + @"\PoggitData.data")) {
+                jsondata = JArray.Parse(reader.ReadLine());
+            }
+            
 
             List<int> list = new();
 
-            System.Diagnostics.Debug.Print(jsondata.Count.ToString());
 
             for (int i = 0; i < jsondata.Count; i++) {
                 if (!list.Contains(int.Parse(jsondata[i]["repo_id"].ToString()))) {
-                    PoggitListData pd = new PoggitListData();
+                    PoggitListData pd = new PoggitListData(window);
                     pd.Id = int.Parse(jsondata[i]["id"].ToString());
                     pd.Name = jsondata[i]["name"].ToString();
-                    pd.Url = jsondata[i]["artifact_url"].ToString() + "/" + pd.Name + ".phar";
-                    pd.Image = jsondata[i]["icon_url"].ToString();
+                    pd.DownloadUrl = jsondata[i]["artifact_url"].ToString() + "/" + pd.Name + ".phar";
+                    pd.AboutUrl = jsondata[i]["html_url"].ToString();
+                    pd.Image = @"../Image/no_image_square.jpg";
+                    if (jsondata[i]["icon_url"].ToString() != "") {
+                        pd.Image = jsondata[i]["icon_url"].ToString();
+                    }
                     pd.Tagline = jsondata[i]["tagline"].ToString();
                     pd.Download = jsondata[i]["downloads"].ToString();
                     pd.RepositoryId = int.Parse(jsondata[i]["repo_id"].ToString());
+                    pd.Version = jsondata[i]["version"].ToString();
+                    pd.FromApi = "指定なし";
+                    pd.ToApi = "指定なし";
+                    if (jsondata[i]["api"].ToString() != "[]") {
+                        pd.FromApi = jsondata[i]["api"][0]["from"].ToString();
+                        pd.ToApi = jsondata[i]["api"][0]["to"].ToString();
+                    }
                     poggitList.Add(pd);
                     list.Add(pd.RepositoryId);
                 }
-            };
-            maxValue = list.Count / 10;
-            if(maxValue % 10 != 0) {
+            }
+            maxValue = list.Count / 20;
+            if (maxValue % 20 != 0) {
                 maxValue++;
             }
 
             GC.Collect();
         }
 
-        private string DownloadString(string url) {
+        public void DownloadString() {
             using (WebClient webClient = new WebClient()) {
-                webClient.Encoding = System.Text.Encoding.UTF8;
-                return webClient.DownloadString(url).Replace("\n", "");
-
+                Encoding enc = new System.Text.UTF8Encoding(false);
+                webClient.DownloadFile(@"https://poggit.pmmp.io/plugins.min.json", path + @"\PoggitData.data");
             }
+        }
+
+        public void sortByName() {
+            
         }
 
         public List<PoggitListData> getPoggitDataInPage(int page) {
             List<PoggitListData> pd = new();
-            int max = page * 10 + 9;
-            for (int i = page * 10; i < max; i++) {
+            int max = page * 20 + 19;
+            for (int i = page * 20; i < max; i++) {
                 if (poggitList[i] == null) break;
                 pd.Add(poggitList[i]);
             }
+
             return pd;
         }
 
@@ -78,11 +111,22 @@ namespace PMMPGuiApp.Data {
     }
 
     internal class PoggitListData {
+
+        private bool download;
+
+        private MainWindow window;
+
+        public PoggitListData(MainWindow window) {
+            this.window = window;
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public string Url { get; set; }
+        public string AboutUrl { get; set; }
+
+        public string DownloadUrl { get; set; }
 
         public string Tagline { get; set; }
 
@@ -91,5 +135,30 @@ namespace PMMPGuiApp.Data {
         public string Image { get; set; }
 
         public int RepositoryId { get; set; }
+
+        public string Version { get; set; }
+
+        public string FromApi { get; set; }
+
+        public string ToApi { get; set; }
+
+
+        public RelayCommand ClickCommand {
+            get {
+                return new RelayCommand(() => {
+                    if (!download) {
+                        using (System.Net.WebClient wc = new()) {
+                            wc.DownloadFile(DownloadUrl, System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui\plugins\" + Name + ".phar");
+                            download = true;
+                            window.textboxApeendToAddTimestamp("[PluginManager]" + Name + "をインストールしました。\n");
+                        }
+                    }
+                });
+            }
+        }
+
+        public RelayCommand AboutClickCommand {
+            get { return new RelayCommand(() => { Process.Start(new ProcessStartInfo("cmd", $"/c start " + AboutUrl) { CreateNoWindow = true }); }); }
+        }
     }
 }

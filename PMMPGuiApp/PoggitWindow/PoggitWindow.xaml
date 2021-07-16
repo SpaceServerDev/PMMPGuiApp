@@ -4,73 +4,115 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="PoggitPlugin" Height="450" Width="800"
+        Title="PoggitPlugins" Height="450" Width="800"
         Closing="PoggitWindow_Closing"
         ResizeMode="NoResize">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="14*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <ComboBox x:Name="combo" Margin="10,5,563,10" FontSize="12">
-                <ComboBoxItem>名前順</ComboBoxItem>
-                <ComboBoxItem>ダウンロード数</ComboBoxItem>
-                <ComboBoxItem>最新</ComboBoxItem>
-            </ComboBox>
-            <TextBox Margin="363,5,86,10" FontSize="12"/>
-            <Button Margin="714,5,15,10" Content="検索" RenderTransformOrigin="0.668,0.301" FontSize="12"/>
-        </Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="ファイル(_F)">
+                    <MenuItem Header="最新の情報を取得する" Click="get_Click"/>
+                    <Separator />
+                    <MenuItem Header="終了" Click="exit_click"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid Margin="0,23,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="14*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <ComboBox x:Name="combo" FontSize="12" Margin="10,5,0,10" >
+                        <ComboBoxItem>名前順</ComboBoxItem>
+                        <ComboBoxItem>ダウンロード数</ComboBoxItem>
+                        <ComboBoxItem>最新</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <TextBox  FontSize="12" Margin="0,5,0,10"/>
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Button Content="検索" FontSize="12" Margin="0,5,10,10"/>
+                </Grid>
+            </Grid>
 
-        <Grid Grid.Row="1">
-            
-            <ListView x:Name="PluginList" Loaded="PluginList_Loaded" Margin="10,0,10,10">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="20*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <Image Source="{Binding Image}" Width="40" Height="40"/>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1">
-                            <TextBlock Text="{Binding Name}" FontSize="25" />
-                            <TextBlock Text="{Binding Tagline}" FontSize="15"/>
-                            <TextBlock Text="{Binding Download,StringFormat=ダウンロード数: {0}}" FontSize="11"/>
-                            <Button Content="Download" HorizontalAlignment="Left" Command="{Binding ClickCommand}"/>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Label x:Name="progress" Content="読込中..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" Visibility="Visible" />
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Button Content="最初" Width="50" Click="FirstButton_Click"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Button Content="&lt;&lt;前" Width="50" Click="PrevButton_Click"/>
-            </StackPanel>
-            <StackPanel Grid.Column="2">
-                <TextBlock x:Name="pageText" Text="0/0" Width="50" TextAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Grid.Column="3">
-                <Button Content="次>>" Width="50" Click="NextButton_Click"/>
-            </StackPanel>
-            <StackPanel Grid.Column="4">
-                <Button Content="最後" Width="50" Click="LastButton_Click"/>
-            </StackPanel>
+            <Grid Grid.Row="1">
+
+                <ListView x:Name="PluginList" Loaded="PluginList_Loaded" Margin="10,0,10,10">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackPanel>
+                                        <Image Source="{Binding Image}"  Width="60" Height="60"/>
+                                        <Button x:Name="AboutButton" Content="詳細" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Command="{Binding AboutClickCommand}"/>
+                                        <Button x:Name="DownloadButton" Content="ダウンロード" Width="60" FontSize="11" HorizontalAlignment="Left" Command="{Binding ClickCommand}"/>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <TextBlock Text="   " FontSize="13"/>
+                                </Grid>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="{Binding Name}" FontSize="25">
+                                    <TextBlock Text=" " FontSize="13"/>
+                                    <TextBlock Text="{Binding Version ,StringFormat=Version {0}}" FontSize="13"/>
+                                </TextBlock>
+                                    <TextBlock Text="{Binding Tagline}" FontSize="20"/>
+                                    <TextBlock Text="ApiVersion: " FontSize="11">
+                                    <TextBlock Text="{Binding FromApi}" FontSize="11"/>
+                                    <TextBlock Text="～" FontSize="11"/>
+                                    <TextBlock Text="{Binding ToApi}" FontSize="11"/>
+                                </TextBlock>
+                                    <TextBlock>
+                                    <TextBlock Text="{Binding Download,StringFormat=ダウンロード数: {0}}" FontSize="11"/>  
+                                </TextBlock>
+
+
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label x:Name="progress" Content="Loading Now..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="Visible" />
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Button Content="最初" Width="50" Click="FirstButton_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Content="&lt;&lt;前" Width="50" Click="PrevButton_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock x:Name="pageText" Text="0/0" Width="50" TextAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3">
+                    <Button Content="次>>" Width="50" Click="NextButton_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="4">
+                    <Button Content="最後" Width="50" Click="LastButton_Click"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

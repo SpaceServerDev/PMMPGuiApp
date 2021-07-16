@@ -10,8 +10,8 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="ファイル(_F)">
-                    <MenuItem Header="PMMPをインストールする" Click="PMMPINSTALL_Click"/>
-                    <MenuItem Header="PMMPをアップデートする" Click="PMMPINSTALL_Click"/>
+                    <MenuItem Header="PMMPをインストール/アップデートする" Click="PMMPINSTALL_Click"/>
+                    <MenuItem Header="サーバーエンジンを入れる" Click="serverEngine_Click"/>
                     <MenuItem Header="エクスプローラーで表示" Click="EX_Click"/>
                     <Separator />
                     <MenuItem Header="終了" Click="exit_click"/>
@@ -27,11 +27,9 @@
                 </MenuItem>
                 <MenuItem Header="ツール(_T)">
                     <MenuItem Header="プラグイン">
-                        <MenuItem Header="導入する">
-                            <MenuItem Header="ローカルファイルから選択" Click="SelectPlugin_Click" />
-                            <MenuItem Header="poggitから探す" Click="SearchPoggit_Click" />
-                        </MenuItem>
-                        <MenuItem Header="探す">
+                        <MenuItem Header="ローカルファイルから選択" Click="SelectPlugin_Click" />
+                        <MenuItem Header="poggitから探す" Click="SearchPoggit_Click" />
+                        <MenuItem Header="インターネットから探す">
                             <MenuItem Header="poggitから探す(英語)" Click="Poggit_Click" />
                             <MenuItem Header="MCBEForumから探す(日本語)" Click="Forum_Click" />
                         </MenuItem>
