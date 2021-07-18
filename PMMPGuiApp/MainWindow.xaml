@@ -3,41 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:PMMPGuiApp.Properties"
         mc:Ignorable="d"
         Closing="MainWindow_Closing"
         Title="PMMPGui" Height="795" Width="1060">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="ファイル(_F)">
-                    <MenuItem Header="PMMPをインストール/アップデートする" Click="PMMPINSTALL_Click"/>
-                    <MenuItem Header="サーバーエンジンを入れる" Click="serverEngine_Click"/>
-                    <MenuItem Header="エクスプローラーで表示" Click="EX_Click"/>
+                <MenuItem Header="{x:Static properties:Resources.File}">
+                    <MenuItem Header="{x:Static properties:Resources.PMMPInstallAndUpdate}" Click="PMMPINSTALL_Click"/>
+                    <MenuItem Header="{x:Static properties:Resources.IntroducingCustomServerEngine}" Click="serverEngine_Click"/>
+                    <MenuItem Header="{x:Static properties:Resources.ViewExproler}" Click="EX_Click"/>
                     <Separator />
-                    <MenuItem Header="終了" Click="exit_click"/>
+                    <MenuItem Header="{x:Static properties:Resources.Exit}" Click="exit_click"/>
                 </MenuItem>
-                <MenuItem Header="編集(_E)">
+                <MenuItem Header="{x:Static properties:Resources.Edit}">
                     <MenuItem Header="サーバーの設定を変更" Click="Propeties_Click"/>
                     <MenuItem Header="pocketmineの設定を変更" Click="PMMPOption_Click"/>
                 </MenuItem>
-                <MenuItem Header="実行(_D)">
-                    <MenuItem x:Name="MenuItem_open_button" Header="PMMPを実行する" Click="executePMMP_Click"/>
+                <MenuItem Header="{x:Static properties:Resources.Run}">
+                    <MenuItem x:Name="MenuItem_open_button" Header="{x:Static properties:Resources.ExecutePMMP}" Click="executePMMP_Click"/>
                     <Separator />
-                    <MenuItem Header="サーバーを強制終了する" Click="KillPMMP_Click"/>
+                    <MenuItem Header="{x:Static properties:Resources.KillPMMP}" Click="KillPMMP_Click"/>
                 </MenuItem>
-                <MenuItem Header="ツール(_T)">
-                    <MenuItem Header="プラグイン">
-                        <MenuItem Header="ローカルファイルから選択" Click="SelectPlugin_Click" />
-                        <MenuItem Header="poggitから探す" Click="SearchPoggit_Click" />
-                        <MenuItem Header="インターネットから探す">
-                            <MenuItem Header="poggitから探す(英語)" Click="Poggit_Click" />
-                            <MenuItem Header="MCBEForumから探す(日本語)" Click="Forum_Click" />
+                <MenuItem Header="{x:Static properties:Resources.Tools}">
+                    <MenuItem Header="{x:Static properties:Resources.Plugin}">
+                        <MenuItem Header="{x:Static properties:Resources.SelectLocalFile}" Click="SelectPlugin_Click" />
+                        <MenuItem Header="{x:Static properties:Resources.SearchPoggit}" Click="SearchPoggit_Click" />
+                        <MenuItem Header="{x:Static properties:Resources.SearchFormTheInternet}">
+                            <MenuItem Header= "{x:Static properties:Resources.SearchPoggitMenuItem}" Click="Poggit_Click" />
+                            <MenuItem Header="{x:Static properties:Resources.SearchMCBEForum}" Click="Forum_Click" />
                         </MenuItem>
                     </MenuItem>
                     
                 </MenuItem>
-                <MenuItem Header="その他(_O)">
-                    <MenuItem Header="バージョン情報" Click="other_Click"/>
+                <MenuItem Header="{x:Static properties:Resources.Other}">
+                    <MenuItem Header="{x:Static properties:Resources.VersionInfomation}" Click="other_Click"/>
                 </MenuItem>
 
 
@@ -67,7 +68,7 @@
                         <!--<Button Content="PMMPを起動する" Click="Button_Click_1" Height="Auto" Width="Auto" Margin="33,75,33,75"/>-->
                     </Grid>
                     <Grid Grid.Row="3">
-                        <Button x:Name="open_button" Content="PMMPを起動する" Click="executePMMP_Click" Height="Auto" Width="Auto" Margin="33,75,33,75"/>
+                        <Button x:Name="open_button" Content="{x:Static properties:Resources.ExecutePMMP}" Click="executePMMP_Click" Height="Auto" Width="Auto" Margin="33,75,33,75"/>
                     </Grid>
                 </Grid>
             </DockPanel>
@@ -90,7 +91,7 @@
                             <TextBox x:Name="Input_textbox" Height="Auto" Width="Auto" FontSize="12" VerticalScrollBarVisibility="Disabled" Margin="0,10,0,10" PreviewKeyDown="Input_textbox_PreviewKeyDown"/>
                         </Grid>
                         <Grid Grid.Column="1">
-                            <Button Content="送信"  Height="Auto" Width="Auto" Click="Input_Click" Loaded="Button_Loaded" Margin="0,10,0,10"/>
+                            <Button Content="{x:Static properties:Resources.Send}"  Height="Auto" Width="Auto" Click="Input_Click" Loaded="Button_Loaded" Margin="0,10,0,10"/>
                         </Grid>
                     </Grid>
 

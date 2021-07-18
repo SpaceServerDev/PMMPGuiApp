@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using PMMPGuiApp.Properties;
 using PMMPGuiApp.Data;
 using System;
 using System.ComponentModel;
@@ -63,7 +64,7 @@ namespace PMMPGuiApp {
                 OpenFileDialog open = new OpenFileDialog() {
                     Title = "プラグインを選択してください",
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    Filter = "Pharファイル|*.phar",
+                    Filter = "PharFile|*.phar",
                 };
 
                 if (open.ShowDialog() != true) {
@@ -111,14 +112,14 @@ namespace PMMPGuiApp {
             }
             if (File.Exists(path + @"\start.cmd")) {
                 if (!isOpenPMMP()) {
-                    textboxApeend("\n>>PMMP実行中...\n\n");
+                    textboxApeend("\n>>"+Properties.Resources.PMMPExecuteNow+"\n\n");
                     await Task.Run(() => {
                         process = new Process();
                         ProcessStartInfo info = new ProcessStartInfo();
                         info.FileName = "cmd.exe";
                         info.Arguments = "/C " + path + @"\start.cmd";
                         //info.FileName = path + @"\bin\php\php.exe";
-                        //info.Arguments = "-c " + path + @"\bin\php " + path + "\\PocketMine-MP.phar";
+                        //info.Arguments = "-c " + path + @"\bin\php " + path + "\\PocketMine-MP.phar || pause";
                         info.RedirectStandardInput = true;
                         info.UseShellExecute = false;
                         info.RedirectStandardOutput = true;
@@ -131,7 +132,7 @@ namespace PMMPGuiApp {
                         process.Start();
                         process.BeginOutputReadLine();
                         if (!File.Exists(path + @"\server.properties")) {
-                            process.StandardInput.WriteLine("jpn");
+                            process.StandardInput.WriteLine(Properties.Resources.SelectLanguage);
                             process.StandardInput.WriteLine("y");
                             process.StandardInput.WriteLine("y");
                             process.StandardInput.WriteLine("e");
@@ -338,10 +339,6 @@ namespace PMMPGuiApp {
             return false;
         }
 
-        public void addInstallMessage(string plugin) {
-            textboxApeendToAddTimestamp(plugin + "をインストールしました。");
-        }
-
         private void composerInstall(string command, PowerShell powerShell) {
             string[] parameter;
             parameter = command.Split(" ");
@@ -445,6 +442,11 @@ namespace PMMPGuiApp {
                     }
                 }
             } catch { }
+            /*if (Process.GetProcessById(process.Id).HasExited) return false;
+            if (Process.GetProcessById(process.Id).ProcessName == "php") {
+                return true;
+            }*/
+
             return false;
         }
 
@@ -459,6 +461,11 @@ namespace PMMPGuiApp {
                     }
                 } catch (InvalidOperationException) { }
             }
+            /*try {
+                if (Process.GetProcessById(process.Id).ProcessName == "php") {
+                    return Convert.ToInt32(process.Id);
+                }
+            } catch (InvalidOperationException) { }*/
             return -1;
         }
     }

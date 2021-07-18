@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Windows.Input;
 
 namespace PMMPGuiApp.Data {
     internal class PoggitData {
@@ -64,10 +63,11 @@ namespace PMMPGuiApp.Data {
                 }
             }
             maxValue = list.Count / 20;
-            if (maxValue % 20 != 0) {
+            if (list.Count % 20 != 0) {
                 maxValue++;
             }
 
+            jsondata = null;
             GC.Collect();
         }
 

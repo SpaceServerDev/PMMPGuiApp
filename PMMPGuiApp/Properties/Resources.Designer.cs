@@ -22,7 +22,7 @@ namespace PMMPGuiApp.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace PMMPGuiApp.Properties {
         ///   このクラスで使用されているキャッシュされた ResourceManager インスタンスを返します。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PMMPGuiApp.Properties.Resources", typeof(Resources).Assembly);
@@ -51,12 +51,327 @@ namespace PMMPGuiApp.Properties {
         ///   現在のスレッドの CurrentUICulture プロパティをオーバーライドします。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Do you want to kill PMMP? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ConfirmKillPMMP {
+            get {
+                return ResourceManager.GetString("ConfirmKillPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The PMMP is currently being downloaded. Please wait for a while. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DownloadingPMMP {
+            get {
+                return ResourceManager.GetString("DownloadingPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Downloading PocketMine-MP now... に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DownloadPMMP {
+            get {
+                return ResourceManager.GetString("DownloadPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Edit(_E) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   English に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Start PMMP に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ExecutePMMP {
+            get {
+                return ResourceManager.GetString("ExecutePMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Exit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   File(_F) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Install PocketMine-MP. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InstallPMMP {
+            get {
+                return ResourceManager.GetString("InstallPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Include the server engine. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string IntroducingCustomServerEngine {
+            get {
+                return ResourceManager.GetString("IntroducingCustomServerEngine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   A custom server engine has been installed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string IntroducingTheCustomServerEngine {
+            get {
+                return ResourceManager.GetString("IntroducingTheCustomServerEngine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   introduction に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Introduction {
+            get {
+                return ResourceManager.GetString("Introduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Kill PMMP. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string KillingPMMP {
+            get {
+                return ResourceManager.GetString("KillingPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Force the server to close. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string KillPMMP {
+            get {
+                return ResourceManager.GetString("KillPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   If you do not press [Stop PMMP], some data will not be saved. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotBeSavedforPMMPisRunning {
+            get {
+                return ResourceManager.GetString("NotBeSavedforPMMPisRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   You cannot download while PMMP is running; please stop PMMP. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotDownloadforPMMPisRunning {
+            get {
+                return ResourceManager.GetString("NotDownloadforPMMPisRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I can&apos;t run PMMP on 32bit windows! に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotExecute32bit {
+            get {
+                return ResourceManager.GetString("NotExecute32bit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The only valid server engine name is \&quot;PocketMine-MP.phar\&quot;. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotMatchServerEngineFileName {
+            get {
+                return ResourceManager.GetString("NotMatchServerEngineFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Other(_O) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Other {
+            get {
+                return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Select a plugin に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PleaseSelectPlugin {
+            get {
+                return ResourceManager.GetString("PleaseSelectPlugin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Plugin に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Plugin {
+            get {
+                return ResourceManager.GetString("Plugin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PMMP is running... に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PMMPExecuteNow {
+            get {
+                return ResourceManager.GetString("PMMPExecuteNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Install/update PMMP に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PMMPInstallAndUpdate {
+            get {
+                return ResourceManager.GetString("PMMPInstallAndUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Run(_R) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Run {
+            get {
+                return ResourceManager.GetString("Run", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Search from the internet に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SearchFormTheInternet {
+            get {
+                return ResourceManager.GetString("SearchFormTheInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Search by MCBEForum (Japanese) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SearchMCBEForum {
+            get {
+                return ResourceManager.GetString("SearchMCBEForum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Search from poggit に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SearchPoggit {
+            get {
+                return ResourceManager.GetString("SearchPoggit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Search from poggit{English) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SearchPoggitMenuItem {
+            get {
+                return ResourceManager.GetString("SearchPoggitMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   eng に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SelectLanguage {
+            get {
+                return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Select from local files に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SelectLocalFile {
+            get {
+                return ResourceManager.GetString("SelectLocalFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Send に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tools(_T) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Tools {
+            get {
+                return ResourceManager.GetString("Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Update will take about 10 seconds, installation will take about 5 minutes. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UpdateAndInstallTime {
+            get {
+                return ResourceManager.GetString("UpdateAndInstallTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Version information に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string VersionInfomation {
+            get {
+                return ResourceManager.GetString("VersionInfomation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   View in Explorer に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ViewExproler {
+            get {
+                return ResourceManager.GetString("ViewExproler", resourceCulture);
             }
         }
     }

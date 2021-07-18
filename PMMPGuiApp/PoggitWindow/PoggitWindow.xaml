@@ -4,14 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="PoggitPlugins" Height="450" Width="800"
+        Title="PoggitPlugins" Height="500" Width="800"
         Closing="PoggitWindow_Closing"
         ResizeMode="NoResize">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="ファイル(_F)">
-                    <MenuItem Header="最新の情報を取得する" Click="get_Click"/>
+                    <MenuItem Header="最新情報を取得" Click="get_Click"/>
                     <Separator />
                     <MenuItem Header="終了" Click="exit_click"/>
                 </MenuItem>
@@ -20,6 +20,7 @@
         <Grid Margin="0,23,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.9*"/>
                 <RowDefinition Height="14*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
@@ -37,6 +38,8 @@
                         <ComboBoxItem>最新</ComboBoxItem>
                     </ComboBox>
                 </Grid>
+
+                
                 <Grid Grid.Column="2">
                     <TextBox  FontSize="12" Margin="0,5,0,10"/>
                 </Grid>
@@ -45,7 +48,11 @@
                 </Grid>
             </Grid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Margin="10,0,10,0">
+                <TextBox x:Name="label" Text="定期的に[ファイル(F)]→[最新情報を取得]で更新を行ってください。" IsReadOnly="True"/>
+            </Grid>
+
+            <Grid Grid.Row="2">
 
                 <ListView x:Name="PluginList" Loaded="PluginList_Loaded" Margin="10,0,10,10">
                     <ListView.ItemTemplate>
@@ -67,18 +74,18 @@
                                     <TextBlock Text="   " FontSize="13"/>
                                 </Grid>
                                 <StackPanel Grid.Column="2">
-                                    <TextBlock Text="{Binding Name}" FontSize="25">
-                                    <TextBlock Text=" " FontSize="13"/>
-                                    <TextBlock Text="{Binding Version ,StringFormat=Version {0}}" FontSize="13"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="28">
+                                    <TextBlock Text=" " FontSize="5"/>
+                                    <TextBlock Text="{Binding Version ,StringFormat=Ver{0}}" FontSize="13"/>
                                 </TextBlock>
                                     <TextBlock Text="{Binding Tagline}" FontSize="20"/>
-                                    <TextBlock Text="ApiVersion: " FontSize="11">
-                                    <TextBlock Text="{Binding FromApi}" FontSize="11"/>
-                                    <TextBlock Text="～" FontSize="11"/>
-                                    <TextBlock Text="{Binding ToApi}" FontSize="11"/>
+                                    <TextBlock Text="ApiVersion: " FontSize="12">
+                                    <TextBlock Text="{Binding FromApi}" FontSize="12"/>
+                                    <TextBlock Text="～" FontSize="12"/>
+                                    <TextBlock Text="{Binding ToApi}" FontSize="12"/>
                                 </TextBlock>
                                     <TextBlock>
-                                    <TextBlock Text="{Binding Download,StringFormat=ダウンロード数: {0}}" FontSize="11"/>  
+                                    <TextBlock Text="{Binding Download,StringFormat=ダウンロード数: {0}}" FontSize="12"/>  
                                 </TextBlock>
 
 
@@ -89,7 +96,7 @@
                 </ListView>
                 <Label x:Name="progress" Content="Loading Now..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Visibility="Visible" />
             </Grid>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>

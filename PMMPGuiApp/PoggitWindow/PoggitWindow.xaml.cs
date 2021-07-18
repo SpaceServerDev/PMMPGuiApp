@@ -3,10 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace PMMPGuiApp.PoggitWindow {
     /// <summary>
@@ -40,22 +38,27 @@ namespace PMMPGuiApp.PoggitWindow {
                 MessageBoxResult result = MessageBox.Show("すでにダウンロード中です", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            label.Text = "プラグインリスト最新情報の取得中です。";
             pageText.Text = "0/0";
             reload(true);
         }
 
         public void exit_click(object sender, RoutedEventArgs e) {
-            Application.Current.MainWindow.Close();
+            this.Close();
         }
 
         private async void reload(bool update=false) {
+            
             progress.Visibility = Visibility.Visible;
             PluginList.ItemsSource = null;
             ObservableCollection<PoggitData> data = new ObservableCollection<PoggitData>();
             combo.SelectedIndex = 0;
             pd = new(window);
             download = true;
-            if (update) await Task.Run(() => { pd.DownloadString(); });
+            if (update) {
+                await Task.Run(() => { pd.DownloadString(); });
+                label.Text = "プラグインリストが最新になりました。";
+            }
             await Task.Run(() => { pd.setList(); });
             progress.Visibility = Visibility.Hidden;
             download = false;
@@ -65,6 +68,7 @@ namespace PMMPGuiApp.PoggitWindow {
             });
             PluginList.ItemsSource = source;
             source = null;
+            
         }
 
 
