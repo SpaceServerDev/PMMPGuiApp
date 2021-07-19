@@ -117,8 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyExecutePMMP" xml:space="preserve">
+    <value>It looks like PMMP is already running.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="ConfirmDownloadProgress" xml:space="preserve">
+    <value>Download is in progress. Do you want to force quit?</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="ConfirmKillPMMP" xml:space="preserve">
     <value>Do you want to kill PMMP?</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="DownloadBath" xml:space="preserve">
+    <value>Downloading batch file...</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="DownloadBin" xml:space="preserve">
+    <value>Downloading binary...</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="DownloadComposer" xml:space="preserve">
+    <value>Downloading files related to composer...</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="DownloadingPMMP" xml:space="preserve">
@@ -141,13 +161,29 @@
     <value>Start PMMP</value>
     <comment>MainWindow.xaml.cs,MainWindow.xaml</comment>
   </data>
+  <data name="ExecuteRuntime" xml:space="preserve">
+    <value>The Windows Runtime Installer will launch. Please install the software manually.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="ExtractBin" xml:space="preserve">
+    <value>Decompressing binary...</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="File" xml:space="preserve">
     <value>File(_F)</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="InstallComplete" xml:space="preserve">
+    <value>Installation is now complete.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="InstallComposer" xml:space="preserve">
+    <value>Installing composer......</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="InstallPMMP" xml:space="preserve">
     <value>Install PocketMine-MP.</value>
@@ -170,7 +206,7 @@
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="KillPMMP" xml:space="preserve">
-    <value>Force the server to close.</value>
+    <value>Force the server to close</value>
     <comment>MainWindow.xaml</comment>
   </data>
   <data name="NotBeSavedforPMMPisRunning" xml:space="preserve">
@@ -185,13 +221,37 @@
     <value>I can't run PMMP on 32bit windows!</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="NotExecutePMMP" xml:space="preserve">
+    <value>PMMP is not running.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="NotInstall_PMMPisRunning" xml:space="preserve">
+    <value>It cannot be installed when PMMP is executed.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="NotMatchServerEngineFileName" xml:space="preserve">
-    <value>The only valid server engine name is \"PocketMine-MP.phar\".</value>
+    <value>The only valid server engine name is "PocketMine-MP.phar".</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="Other" xml:space="preserve">
     <value>Other(_O)</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="PharFile" xml:space="preserve">
+    <value>PharFile</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="PleaseInstallPMMP" xml:space="preserve">
+    <value>Select [File(_F)] &gt; [Install PMMP]</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="PleaseKillPMMP" xml:space="preserve">
+    <value>Select [Run(_R)] &gt; [Force the server to close].</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="PleasePressExecuteButton" xml:space="preserve">
+    <value>Press the Start button.</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="PleaseSelectPlugin" xml:space="preserve">
     <value>Select a plugin</value>
@@ -209,9 +269,17 @@
     <value>Install/update PMMP</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="PMMPNotFound" xml:space="preserve">
+    <value>PMMP does not exist.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="Run" xml:space="preserve">
     <value>Run(_R)</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="RunningPMMP" xml:space="preserve">
+    <value>PMMP is running.</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="SearchFormTheInternet" xml:space="preserve">
     <value>Search from the internet</value>
@@ -229,6 +297,10 @@
     <value>Search from poggit{English)</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>Seconds</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>eng</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -240,6 +312,10 @@
   <data name="Send" xml:space="preserve">
     <value>Send</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="StopPMMP" xml:space="preserve">
+    <value>StopPMMP</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="Tools" xml:space="preserve">
     <value>Tools(_T)</value>

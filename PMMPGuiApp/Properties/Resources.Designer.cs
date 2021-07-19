@@ -61,11 +61,56 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
+        ///   It looks like PMMP is already running. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AlreadyExecutePMMP {
+            get {
+                return ResourceManager.GetString("AlreadyExecutePMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Download is in progress. Do you want to force quit? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ConfirmDownloadProgress {
+            get {
+                return ResourceManager.GetString("ConfirmDownloadProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Do you want to kill PMMP? に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ConfirmKillPMMP {
             get {
                 return ResourceManager.GetString("ConfirmKillPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Downloading batch file... に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DownloadBath {
+            get {
+                return ResourceManager.GetString("DownloadBath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Downloading binary... に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DownloadBin {
+            get {
+                return ResourceManager.GetString("DownloadBin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Downloading files related to composer... に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DownloadComposer {
+            get {
+                return ResourceManager.GetString("DownloadComposer", resourceCulture);
             }
         }
         
@@ -115,6 +160,15 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
+        ///   The Windows Runtime Installer will launch. Please install the software manually. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ExecuteRuntime {
+            get {
+                return ResourceManager.GetString("ExecuteRuntime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Exit に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Exit {
@@ -124,11 +178,38 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
+        ///   Decompressing binary... に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ExtractBin {
+            get {
+                return ResourceManager.GetString("ExtractBin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   File(_F) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Installation is now complete. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InstallComplete {
+            get {
+                return ResourceManager.GetString("InstallComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Installing composer...... に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InstallComposer {
+            get {
+                return ResourceManager.GetString("InstallComposer", resourceCulture);
             }
         }
         
@@ -178,7 +259,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Force the server to close. に類似しているローカライズされた文字列を検索します。
+        ///   Force the server to close に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string KillPMMP {
             get {
@@ -214,7 +295,25 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   The only valid server engine name is \&quot;PocketMine-MP.phar\&quot;. に類似しているローカライズされた文字列を検索します。
+        ///   PMMP is not running. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotExecutePMMP {
+            get {
+                return ResourceManager.GetString("NotExecutePMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   It cannot be installed when PMMP is executed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotInstall_PMMPisRunning {
+            get {
+                return ResourceManager.GetString("NotInstall_PMMPisRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   The only valid server engine name is &quot;PocketMine-MP.phar&quot;. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotMatchServerEngineFileName {
             get {
@@ -228,6 +327,42 @@ namespace PMMPGuiApp.Properties {
         public static string Other {
             get {
                 return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PharFile に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PharFile {
+            get {
+                return ResourceManager.GetString("PharFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Select [File(_F)] &gt; [Install PMMP] に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PleaseInstallPMMP {
+            get {
+                return ResourceManager.GetString("PleaseInstallPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Select [Run(_R)] &gt; [Force the server to close]. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PleaseKillPMMP {
+            get {
+                return ResourceManager.GetString("PleaseKillPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Press the Start button. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PleasePressExecuteButton {
+            get {
+                return ResourceManager.GetString("PleasePressExecuteButton", resourceCulture);
             }
         }
         
@@ -268,11 +403,29 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
+        ///   PMMP does not exist. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PMMPNotFound {
+            get {
+                return ResourceManager.GetString("PMMPNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Run(_R) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Run {
             get {
                 return ResourceManager.GetString("Run", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PMMP is running. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string RunningPMMP {
+            get {
+                return ResourceManager.GetString("RunningPMMP", resourceCulture);
             }
         }
         
@@ -313,6 +466,15 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
+        ///   Seconds に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Seconds {
+            get {
+                return ResourceManager.GetString("Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   eng に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SelectLanguage {
@@ -336,6 +498,15 @@ namespace PMMPGuiApp.Properties {
         public static string Send {
             get {
                 return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   StopPMMP に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string StopPMMP {
+            get {
+                return ResourceManager.GetString("StopPMMP", resourceCulture);
             }
         }
         

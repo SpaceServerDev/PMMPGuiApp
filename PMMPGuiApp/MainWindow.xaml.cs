@@ -20,28 +20,28 @@ namespace PMMPGuiApp {
     public partial class MainWindow : Window {
 
         /// <summary>
-        /// フォルダまでのパス
+        /// Path to the folder
         /// </summary>
         private string path = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui";
 
         /// <summary>
-        /// 実行プロセス
+        /// execution process
         /// </summary>
         private Process process;
 
         /// <summary>
-        /// 
+        /// Class that stores the ID of the process.
         /// </summary>
 
         private ProcessData processData = new ProcessData();
 
         /// <summary>
-        /// ダウンロード中はtrue
+        /// True while downloading.
         /// </summary>
         private bool download;
 
         /// <summary>
-        /// ファイルがセーブされてるか確認するフラグ
+        /// Flag to check if a file has been saved.
         /// </summary>
         private bool filesave = false;
 
@@ -62,9 +62,9 @@ namespace PMMPGuiApp {
         private void serverEngine_Click(object sender, RoutedEventArgs e) {
             if (!isOpenPMMP()) {
                 OpenFileDialog open = new OpenFileDialog() {
-                    Title = "プラグインを選択してください",
+                    Title = Properties.Resources.PleaseSelectPlugin,
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    Filter = "PharFile|*.phar",
+                    Filter = Properties.Resources.PharFile + "|*.phar",
                 };
 
                 if (open.ShowDialog() != true) {
@@ -72,15 +72,15 @@ namespace PMMPGuiApp {
                 }
 
                 if (Path.GetFileName(open.FileName) != "PocketMine-MP.phar") {
-                    MessageBox.Show("サーバーエンジンの名前は\"PocketMine-MP.phar\"のみ有効です。", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show(Properties.Resources.NotMatchServerEngineFileName, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
                 if (File.Exists(path + @"\PocketMine-MP.phar")) File.Delete(path + @"\PocketMine-MP.phar");
                 File.Copy(open.FileName, path + @"\" + Path.GetFileName(open.FileName));
-                textboxApeendToAddTimestamp("カスタムサーバーエンジンを導入しました");
+                textboxApeendToAddTimestamp(Properties.Resources.IntroducingTheCustomServerEngine);
             } else {
-                MessageBox.Show("PMMP実行中にはダウンロードできません。PMMPを停止してください。", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Properties.Resources.NotDownloadforPMMPisRunning, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -95,7 +95,7 @@ namespace PMMPGuiApp {
 
         private async void executePMMP_Click(object sender, RoutedEventArgs e) {
             if (download) {
-                textboxApeendToAddTimestamp("\n現在PMMPダウンロード中です。しばらくお待ち下さい。\n");
+                textboxApeendToAddTimestamp("\n"+ Properties.Resources.DownloadPMMP);
                 return;
             }
             if (process == null) {
@@ -103,8 +103,8 @@ namespace PMMPGuiApp {
                     try {
                         if (Process.GetProcessById(processData.getProcess()).ProcessName == "php") {
                             Debug.Print((Process.GetProcessById(processData.getProcess()).ProcessName == "php").ToString());
-                            textboxApeendToAddTimestamp("すでにPMMPが起動しているようです。\n");
-                            textboxApeendToAddTimestamp("[実行(D)]から[サーバーを強制終了する]をクリックしてください。\n");
+                            textboxApeendToAddTimestamp(Properties.Resources.AlreadyExecutePMMP);
+                            textboxApeendToAddTimestamp(Properties.Resources.PleaseKillPMMP);
                             return;
                         }
                     } catch { }
@@ -139,38 +139,38 @@ namespace PMMPGuiApp {
                         }
                     });
                     this.filesave = true;
-                    MenuItem_open_button.Header = "PMMPを停止する";
-                    open_button.Content = "PMMPを停止する";
+                    MenuItem_open_button.Header = Properties.Resources.StopPMMP;
+                    open_button.Content = Properties.Resources.StopPMMP;
                 } else {
                     process.StandardInput.WriteLine("stop");
                     process.Kill();
-                    MenuItem_open_button.Header = "PMMPを起動する";
-                    open_button.Content = "PMMPを起動する";
+                    MenuItem_open_button.Header = Properties.Resources.ExecutePMMP;
+                    open_button.Content = Properties.Resources.ExecutePMMP;
                 }
             } else {
-                textboxApeendToAddTimestamp("pmmpが存在しません。\n");
-                textboxApeendToAddTimestamp("[ファイル(F)] から [PMMPをインストールする] を選択してください\n");
+                textboxApeendToAddTimestamp(Properties.Resources.PMMPNotFound);
+                textboxApeendToAddTimestamp(Properties.Resources.PleaseInstallPMMP);
             }
         }
 
         private void KillPMMP_Click(object sender, RoutedEventArgs e) {
             if (process == null) {
                 if (processData.getProcess() == -1) {
-                    textboxApeendToAddTimestamp("PMMPは起動していないようです。");
+                    textboxApeendToAddTimestamp(Properties.Resources.NotExecutePMMP);
                     return;
                 }
             }
-            MessageBoxResult result = MessageBox.Show("PMMPを強制終了しますか？", "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show(Properties.Resources.ConfirmKillPMMP, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.No) return;
             if (process != null) {
                 try {
                     Process.GetProcessById(getPMMPProcessId()).Kill();
-                    MenuItem_open_button.Header = "PMMPを起動する";
-                    open_button.Content = "PMMPを起動する";
-                    textboxApeendToAddTimestamp("PMMPを強制終了します。\n");
+                    MenuItem_open_button.Header = Properties.Resources.ExecutePMMP;
+                    open_button.Content = Properties.Resources.ExecutePMMP;
+                    textboxApeendToAddTimestamp(Properties.Resources.KillingPMMP);
                     return;
                 } catch {
-                    textboxApeendToAddTimestamp("PMMPは起動していませんでした。\n");
+                    textboxApeendToAddTimestamp(Properties.Resources.NotExecutePMMP);
                     return;
                 }
             }
@@ -178,10 +178,10 @@ namespace PMMPGuiApp {
                 try {
                     if (Process.GetProcessById(processData.getProcess()).ProcessName == "php") {
                         Process.GetProcessById(processData.getProcess()).Kill();
-                        textboxApeendToAddTimestamp("PMMPを強制終了します。\n");
+                        textboxApeendToAddTimestamp(Properties.Resources.KillingPMMP);
                     }
                 } catch {
-                    textboxApeendToAddTimestamp("PMMPは起動していませんでした。\n");
+                    textboxApeendToAddTimestamp(Properties.Resources.NotExecutePMMP);
                 }
             }
         }
@@ -198,9 +198,9 @@ namespace PMMPGuiApp {
         private void SelectPlugin_Click(object sender, RoutedEventArgs e) {
             if (!isOpenPMMP()) {
                 OpenFileDialog open = new OpenFileDialog() {
-                    Title = "プラグインを選択してください",
+                    Title = Properties.Resources.PleaseSelectPlugin,
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    Filter = "Pharファイル|*.phar",
+                    Filter = Properties.Resources.PharFile+"|*.phar",
                 };
 
                 if (open.ShowDialog() != true) {
@@ -209,9 +209,9 @@ namespace PMMPGuiApp {
 
                 if (File.Exists(path + @"\plugins\" + Path.GetFileName(open.FileName))) File.Delete(path + @"\plugins\" + Path.GetFileName(open.FileName));
                 File.Copy(open.FileName, path + @"\plugins\" + Path.GetFileName(open.FileName));
-                textboxApeendToAddTimestamp(Path.GetFileNameWithoutExtension(open.FileName) + "を導入しました");
+                textboxApeendToAddTimestamp(Properties.Resources.Introduction+" >> "+ Path.GetFileNameWithoutExtension(open.FileName));
             } else {
-                MessageBox.Show("PMMP実行中にはダウンロードできません。PMMPを停止してください。", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Properties.Resources.NotDownloadforPMMPisRunning, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -221,7 +221,7 @@ namespace PMMPGuiApp {
                 window.Owner = this;
                 window.ShowDialog();
             } else {
-                MessageBox.Show("PMMP実行中にはダウンロードできません。PMMPを停止してください。", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(Properties.Resources.NotDownloadforPMMPisRunning, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -250,7 +250,7 @@ namespace PMMPGuiApp {
 
         private void MainWindow_Closing(object sender, CancelEventArgs e) {
             if (download) {
-                MessageBoxResult result = MessageBox.Show("ダウンロードが進行中です。強制終了しますか？", "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult result = MessageBox.Show(Properties.Resources.ConfirmDownloadProgress, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.No) {
                     e.Cancel = true;
                     return;
@@ -258,7 +258,7 @@ namespace PMMPGuiApp {
 
             }
             if (isOpenPMMP()) {
-                MessageBoxResult result = MessageBox.Show("PMMPが実行中です。強制終了しますか？\n*[PMMPを停止する]を押さないと一部データが保存されません。", "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult result = MessageBox.Show(Properties.Resources.RunningPMMP+ Properties.Resources.ConfirmKillPMMP+"\n*"+ Properties.Resources.NotBeSavedforPMMPisRunning, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.No) {
                     e.Cancel = true;
                     return;
@@ -279,10 +279,10 @@ namespace PMMPGuiApp {
         }
         private async void startPMMPInstall() {
             if (isOpenPMMP()) {
-                textboxApeend("PMMP実行時にはインストールできません。\n");
+                textboxApeend(Properties.Resources.NotInstall_PMMPisRunning+"\n");
                 return;
             }
-            textboxApeend("\n+=+=PocketMine-MPをインストールします。 ..... (アップデートは10秒ほど、インストールは5分程かかります)=+=+\n\n");
+            textboxApeend("\n+=+="+ Properties.Resources.InstallPMMP + " ..... ("+ Properties.Resources.UpdateAndInstallTime + ")=+=+\n\n");
             download = true;
             await Task.Run(() => this.download = pmmpInstall());
         }
@@ -299,7 +299,7 @@ namespace PMMPGuiApp {
             };
 
             if (!Environment.Is64BitProcess) {
-                MessageBox.Show("32bitのwindowsではPMMPを動かすことができません！", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.NotExecute32bit, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -307,25 +307,25 @@ namespace PMMPGuiApp {
 
             using (System.Net.WebClient wc = new()) {
 
-                useTextBoxInAsync("PocketMine-MPダウンロード中..." + "\n", true);
+                useTextBoxInAsync(Properties.Resources.DownloadPMMP + "\n", true);
                 wc.DownloadFile(urls[0], path + @"\PocketMine-MP.phar");
 
                 if (!File.Exists(path + @"\bin\php\php.exe")) {
                     using (PowerShell powerShell = PowerShell.Create()) {
-                        useTextBoxInAsync("バッチファイルダウンロード中..." + "\n", true);
+                        useTextBoxInAsync(Properties.Resources.DownloadBath + "\n", true);
                         wc.DownloadFile(urls[1], path + @"\start.cmd");
-                        useTextBoxInAsync("バイナリダウンロード中..." + "\n", true);
+                        useTextBoxInAsync(Properties.Resources.DownloadBin + "\n", true);
                         wc.DownloadFile(urls[2], path + @"\PHP-7.4-Windows-x64.zip");
-                        useTextBoxInAsync("バイナリの解凍中..." + "\n", true);
+                        useTextBoxInAsync(Properties.Resources.ExtractBin + "\n", true);
                         ZipFile.ExtractToDirectory(urls[5], path);
                         File.Delete(urls[5]);
-                        useTextBoxInAsync("Windowsランタイムインストーラーが起動します。手動でのインストールをお願いします。" + "\n", true);
+                        useTextBoxInAsync(Properties.Resources.ExecuteRuntime + "\n", true);
                         Process.Start(urls[6]);
-                        useTextBoxInAsync("composer関連ファイルダウンロード中..." + "\n", true);
+                        useTextBoxInAsync(Properties.Resources.DownloadComposer + "\n", true);
                         wc.DownloadFile(urls[3], path + @"\composer.json");
                         wc.DownloadFile(urls[4], path + @"\bin\composer.phar");
                         wc.Dispose();
-                        useTextBoxInAsync("composerインストール中......" + "\n", true);
+                        useTextBoxInAsync(Properties.Resources.InstallComposer + "\n", true);
                         composerInstall("cd " + path, powerShell);
                         composerInstall(@"bin\php\php.exe bin\composer.phar install", powerShell);
                         powerShell.Stop();
@@ -335,7 +335,7 @@ namespace PMMPGuiApp {
 
             DateTime end = DateTime.Now;
             TimeSpan ts = end - start;
-            useTextBoxInAsync("\"" + path + "\"に" + "インストールが完了しました。(" + ts.TotalSeconds + "秒)\n\n", true);
+            useTextBoxInAsync(Properties.Resources.InstallComplete + " (" + ts.TotalSeconds + Properties.Resources.Seconds+ ") >> \"" + path + "\"" +  ")\n\n", true);
             return false;
         }
 
@@ -363,26 +363,26 @@ namespace PMMPGuiApp {
 
         private void sendPMMPCommand() {
             if (download) {
-                textboxApeend("\n現在PMMPダウンロード中です。しばらくお待ち下さい。\n");
+                textboxApeend("\n"+ Properties.Resources.DownloadingPMMP + "\n");
                 return;
             }
             if (!isOpenPMMP()) {
                 if (processData.getProcess() != -1) {
                     try {
                         if (Process.GetProcessById(processData.getProcess()).ProcessName == "php") {
-                            textboxApeendToAddTimestamp("すでにPMMPが起動しているようです。\n");
-                            textboxApeendToAddTimestamp("[実行(D)]から[サーバーを強制終了する]をクリックしてください。\n");
+                            textboxApeendToAddTimestamp(Properties.Resources.AlreadyExecutePMMP);
+                            textboxApeendToAddTimestamp(Properties.Resources.PleaseKillPMMP);
                             return;
                         }
                     } catch { }
                 }
                 if (!File.Exists(path + @"\start.cmd")) {
-                    textboxApeendToAddTimestamp("PMMPが存在していません\n");
-                    textboxApeendToAddTimestamp("[ファイル(F)] から [PMMPをインストールする] を選択してください\n");
+                    textboxApeendToAddTimestamp(Properties.Resources.PMMPNotFound);
+                    textboxApeendToAddTimestamp(Properties.Resources.PleaseInstallPMMP);
                     return;
                 }
-                textboxApeendToAddTimestamp("PMMPが起動していません。\n");
-                textboxApeendToAddTimestamp("起動ボタンを押して下さい。\n");
+                textboxApeendToAddTimestamp(Properties.Resources.NotExecutePMMP);
+                textboxApeendToAddTimestamp(Properties.Resources.PleasePressExecuteButton);
                 return;
             }
             if (Input_textbox.Text == "") {
@@ -409,8 +409,8 @@ namespace PMMPGuiApp {
                     }
 
                 } else {
-                    MenuItem_open_button.Header = "PMMPを起動する";
-                    open_button.Content = "PMMPを起動する";
+                    MenuItem_open_button.Header = Properties.Resources.ExecutePMMP;
+                    open_button.Content = Properties.Resources.ExecutePMMP;
                 }
                 if (useTimestamp) {
                     textboxApeendToAddTimestamp(str);
@@ -422,7 +422,7 @@ namespace PMMPGuiApp {
 
         public void textboxApeendToAddTimestamp(string str) {
             DateTime date = DateTime.Now;
-            Output_textbox.AppendText("[" + date.ToString("HH:mm:ss") + "] [PMMPGUI]: " + str);
+            Output_textbox.AppendText("[" + date.ToString("HH:mm:ss") + "] [PMMPGUI]: " + str + "\n");
             Output_textbox.ScrollToEnd();
         }
 

@@ -121,6 +121,10 @@
     <value>すでにPMMPが起動しているようです</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="ConfirmDownloadProgress" xml:space="preserve">
+    <value>ダウンロードが進行中です。強制終了しますか？</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="ConfirmKillPMMP" xml:space="preserve">
     <value>PMMPを強制終了しますか？</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -213,28 +217,36 @@
     <value>PMMP実行中にはダウンロードできません。PMMPを停止してください。</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
-  <data name="NotExeccutePMMP" xml:space="preserve">
-    <value>PMMPが起動していません。</value>
-    <comment>MainWindow.xaml.cs</comment>
-  </data>
   <data name="NotExecute32bit" xml:space="preserve">
     <value>32bitのwindowsではPMMPを動かすことができません！</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="NotExecutePMMP" xml:space="preserve">
+    <value>PMMPが起動していません。</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="NotInstall_PMMPisRunning" xml:space="preserve">
+    <value>PMMP実行時にはインストールできません。</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="NotMatchServerEngineFileName" xml:space="preserve">
-    <value>サーバーエンジンの名前は\"PocketMine-MP.phar\"のみ有効です。</value>
+    <value>サーバーエンジンの名前は"PocketMine-MP.phar"のみ有効です。</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="Other" xml:space="preserve">
     <value>その他(_O)</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="PharFile" xml:space="preserve">
+    <value>Pharファイル</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="PleaseInstallPMMP" xml:space="preserve">
     <value>[ファイル(F)] から [PMMPをインストールする] を選択してください</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="PleaseKillPMMP" xml:space="preserve">
-    <value>[実行(D)]から[サーバーを強制終了する]をクリックしてください。</value>
+    <value>[実行(R)]から[サーバーを強制終了する]をクリックしてください。</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="PleasePressExecuteButton" xml:space="preserve">
@@ -266,8 +278,12 @@
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="Run" xml:space="preserve">
-    <value>実行(_D)</value>
+    <value>実行(_R)</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="RunningPMMP" xml:space="preserve">
+    <value>PMMPが実行中です。</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="SearchFormTheInternet" xml:space="preserve">
     <value>インターネットから探す</value>
@@ -291,6 +307,7 @@
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>jpn</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="SelectLocalFile" xml:space="preserve">
     <value>ローカルファイルから選択</value>
@@ -299,6 +316,10 @@
   <data name="Send" xml:space="preserve">
     <value>送信</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="StopPMMP" xml:space="preserve">
+    <value>PMMPを停止する</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="Tools" xml:space="preserve">
     <value>ツール(_T)</value>
