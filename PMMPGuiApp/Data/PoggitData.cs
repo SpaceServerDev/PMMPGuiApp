@@ -62,13 +62,17 @@ namespace PMMPGuiApp.Data {
                     list.Add(pd.RepositoryId);
                 }
             }
+            Debug.Print(list.Count.ToString());
             maxValue = list.Count / 20;
+            Debug.Print(maxValue.ToString());
             if (list.Count % 20 != 0) {
+                Debug.Print((list.Count % 20 != 0).ToString());
                 maxValue++;
             }
+            Debug.Print(maxValue.ToString());
+
 
             jsondata = null;
-            GC.Collect();
         }
 
         public void DownloadString() {
@@ -84,19 +88,16 @@ namespace PMMPGuiApp.Data {
 
         public List<PoggitListData> getPoggitDataInPage(int page) {
             List<PoggitListData> pd = new();
+            Debug.Print(page.ToString());
             int max = page * 20 + 19;
             for (int i = page * 20; i < max; i++) {
-                if (poggitList[i] == null) break;
+                if (poggitList.Count <= i) break;
                 pd.Add(poggitList[i]);
             }
 
             return pd;
         }
 
-
-        public List<PoggitListData> GetPoggitListDatas() {
-            return poggitList;
-        }
 
         public int getMax() {
             return maxValue;
