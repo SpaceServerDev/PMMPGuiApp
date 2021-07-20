@@ -31,6 +31,7 @@ namespace PMMPGuiApp.PoggitWindow {
         private  void PluginList_Loaded(object sender, RoutedEventArgs e) {
             reload();
         }
+
        
 
         private void get_Click(object sender, RoutedEventArgs e) {
@@ -41,6 +42,30 @@ namespace PMMPGuiApp.PoggitWindow {
             label.Text = "プラグインリスト最新情報の取得中です。";
             pageText.Text = "0/0";
             reload(true);
+        }
+
+        private void combo_DropDownClosed(object sender, EventArgs e) {
+            if (download) {
+                label.Text = "データのダウンロード中です。";
+                combo.SelectedIndex = 0;
+                return;
+            }
+            if (combo.SelectedIndex == 0) {
+                pd.sortByName();
+                label.Text = "名前順に並べ替えました。";
+            } else {
+                pd.sortByDownloadCount();
+                label.Text = "ダウンロード順に並べ替えました。";
+            }
+            
+            source=pd.getPoggitDataInPage(0);
+            
+            PluginList.ItemsSource = source;
+            source = null;
+            changePageText();
+            PluginList.SelectedIndex = 0;
+            PluginList.ScrollIntoView(PluginList.SelectedItem);
+            page = 1;
         }
 
         public void exit_click(object sender, RoutedEventArgs e) {
@@ -60,6 +85,7 @@ namespace PMMPGuiApp.PoggitWindow {
                 label.Text = "プラグインリストが最新になりました。";
             }
             await Task.Run(() => { pd.setList(); });
+            pd.sortByName();
             progress.Visibility = Visibility.Hidden;
             download = false;
             changePageText();
@@ -80,7 +106,6 @@ namespace PMMPGuiApp.PoggitWindow {
             }
             pd.Disponse();
             pd = null;
-            GC.Collect();
         }
 
         private void changePageText() {
@@ -137,5 +162,7 @@ namespace PMMPGuiApp.PoggitWindow {
             PluginList.SelectedIndex = 0;
             PluginList.ScrollIntoView(PluginList.SelectedItem);
         }
+
+       
     }
 }

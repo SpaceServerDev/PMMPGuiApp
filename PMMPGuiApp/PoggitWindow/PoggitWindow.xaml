@@ -32,10 +32,10 @@
                     <ColumnDefinition Width="0.4*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <ComboBox x:Name="combo" FontSize="12" Margin="10,5,0,10" >
+                    <ComboBox x:Name="combo" FontSize="12" Margin="10,5,0,10" DropDownClosed="combo_DropDownClosed" >
                         <ComboBoxItem>名前順</ComboBoxItem>
                         <ComboBoxItem>ダウンロード数</ComboBoxItem>
-                        <ComboBoxItem>最新</ComboBoxItem>
+                        <!--"<ComboBoxItem>最新</ComboBoxItem>-->
                     </ComboBox>
                 </Grid>
 

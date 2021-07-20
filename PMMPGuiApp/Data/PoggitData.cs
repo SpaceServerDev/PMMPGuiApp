@@ -83,7 +83,12 @@ namespace PMMPGuiApp.Data {
         }
 
         public void sortByName() {
-            
+            poggitList.Sort((a, b) => a.Name.CompareTo(b.Name));
+        }
+
+        public void sortByDownloadCount() {
+            poggitList.Sort((a, b) => int.Parse(a.Download).CompareTo(int.Parse(b.Download)));
+            poggitList.Reverse();
         }
 
         public List<PoggitListData> getPoggitDataInPage(int page) {
