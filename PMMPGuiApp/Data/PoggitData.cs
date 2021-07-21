@@ -14,6 +14,8 @@ namespace PMMPGuiApp.Data {
 
         private List<PoggitListData> poggitList = new();
 
+        private List<PoggitListData> viewPoggitList = new();
+
         private int maxValue;
 
         private MainWindow window;
@@ -62,16 +64,11 @@ namespace PMMPGuiApp.Data {
                     list.Add(pd.RepositoryId);
                 }
             }
-            Debug.Print(list.Count.ToString());
             maxValue = list.Count / 20;
-            Debug.Print(maxValue.ToString());
             if (list.Count % 20 != 0) {
-                Debug.Print((list.Count % 20 != 0).ToString());
                 maxValue++;
             }
-            Debug.Print(maxValue.ToString());
-
-
+            viewPoggitList = poggitList;
             jsondata = null;
         }
 
@@ -91,13 +88,24 @@ namespace PMMPGuiApp.Data {
             poggitList.Reverse();
         }
 
+        public void getSearchPoggitData(string str) {
+            List<PoggitListData> pd = new();
+            foreach(PoggitListData poggitlist in poggitList) {
+                if (poggitlist.Name.IndexOf(str, StringComparison.OrdinalIgnoreCase) >= 0) pd.Add(poggitlist);
+            }
+            maxValue = pd.Count / 20;
+            if (pd.Count % 20 != 0) {
+                maxValue++;
+            }
+            viewPoggitList = pd;
+        }
+
         public List<PoggitListData> getPoggitDataInPage(int page) {
             List<PoggitListData> pd = new();
-            Debug.Print(page.ToString());
             int max = page * 20 + 19;
             for (int i = page * 20; i < max; i++) {
-                if (poggitList.Count <= i) break;
-                pd.Add(poggitList[i]);
+                if (viewPoggitList.Count <= i) break;
+                pd.Add(viewPoggitList[i]);
             }
 
             return pd;

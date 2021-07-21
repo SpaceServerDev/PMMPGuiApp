@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PMMPGuiApp.PoggitWindow {
     /// <summary>
@@ -31,8 +32,6 @@ namespace PMMPGuiApp.PoggitWindow {
         private  void PluginList_Loaded(object sender, RoutedEventArgs e) {
             reload();
         }
-
-       
 
         private void get_Click(object sender, RoutedEventArgs e) {
             if (download) {
@@ -72,6 +71,35 @@ namespace PMMPGuiApp.PoggitWindow {
             this.Close();
         }
 
+        private void SearchButton_Click(object sender, RoutedEventArgs e) {
+            if (download) {
+                label.Text = "現在ダウンロード中です。しばらくお待ち下さい。";
+                return;
+            }
+            search();
+        }
+
+        private void SearchTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e) {
+            if (download) {
+                label.Text = "現在ダウンロード中です。しばらくお待ち下さい。";
+                return;
+            }
+            Key key = e.Key;
+            if (key == Key.Enter) {
+                search();
+            }
+        }
+
+        private void search() {
+            combo.SelectedIndex = 0;
+            pd.getSearchPoggitData(SearchTextBox.Text);
+            pd.sortByName();
+            source = pd.getPoggitDataInPage(0);
+            PluginList.ItemsSource = source;
+            page = 1;
+            changePageText();
+        }
+
         private async void reload(bool update=false) {
             
             progress.Visibility = Visibility.Visible;
@@ -93,6 +121,7 @@ namespace PMMPGuiApp.PoggitWindow {
                 source = pd.getPoggitDataInPage(0);
             });
             PluginList.ItemsSource = source;
+            page = 1;
             source = null;
             
         }
