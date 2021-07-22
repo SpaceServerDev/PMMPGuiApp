@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AcceptLicense" xml:space="preserve">
+    <value>PocketMine-MPを使用するにはライセンスに同意する必要があります。</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="Agree" xml:space="preserve">
+    <value>同意しますか？</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="AlreadyExecutePMMP" xml:space="preserve">
     <value>すでにPMMPが起動しているようです</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -208,6 +216,17 @@
   <data name="KillPMMP" xml:space="preserve">
     <value>サーバーを強制終了する</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="NotAgreeLicense" xml:space="preserve">
+    <value>ライセンスに同意しないとこのソフトウェアを使用することはできません。</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="NotBeSavedforPMMPisRunning" xml:space="preserve">
     <value>[PMMPを停止する]を押さないと一部データが保存されません。</value>
@@ -316,6 +335,10 @@
   <data name="Send" xml:space="preserve">
     <value>送信</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="StoppedPMMP" xml:space="preserve">
+    <value>PMMPが正常に終了しました</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="StopPMMP" xml:space="preserve">
     <value>PMMPを停止する</value>

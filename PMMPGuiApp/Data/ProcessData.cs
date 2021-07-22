@@ -11,8 +11,8 @@ namespace PMMPGuiApp.Data {
 
         public ProcessData() {
             Directory.CreateDirectory(path);
-            if (!File.Exists(path + @"\PROCESS")) File.Create(path + @"\PROCESS");
-            using (StreamReader reader = new StreamReader(path + @"\PROCESS")) {
+            if (!File.Exists(path + @"\PROCESS")) File.Create(path + @"\PROCESS").Close();
+            using (StreamReader reader = new(path + @"\PROCESS")) {
                 int output = -1;
                 int.TryParse(reader.ReadLine(), out output);
                 processID = output;

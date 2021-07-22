@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace PMMPGuiApp.PoggitWindow {
+namespace PMMPGuiApp.Windows.PoggitWindow {
     /// <summary>
     /// Window1.xaml の相互作用ロジック
     /// </summary>

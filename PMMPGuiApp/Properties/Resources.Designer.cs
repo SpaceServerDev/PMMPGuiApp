@@ -61,6 +61,24 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
+        ///   To use PocketMine-MP, you need to agree to the license. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AcceptLicense {
+            get {
+                return ResourceManager.GetString("AcceptLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Do you agree? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Agree {
+            get {
+                return ResourceManager.GetString("Agree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   It looks like PMMP is already running. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AlreadyExecutePMMP {
@@ -264,6 +282,27 @@ namespace PMMPGuiApp.Properties {
         public static string KillPMMP {
             get {
                 return ResourceManager.GetString("KillPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   This program is free software: you can redistribute it and/or modify
+        ///it under the terms of the GNU Lesser General Public License as published by
+        ///the Free Software Foundation, either version 3 of the License, or
+        ///(at your option) any later version. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string License {
+            get {
+                return ResourceManager.GetString("License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   If you do not agree to the license, you cannot use this software. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotAgreeLicense {
+            get {
+                return ResourceManager.GetString("NotAgreeLicense", resourceCulture);
             }
         }
         
@@ -498,6 +537,15 @@ namespace PMMPGuiApp.Properties {
         public static string Send {
             get {
                 return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PMMP has been successfully completed. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string StoppedPMMP {
+            get {
+                return ResourceManager.GetString("StoppedPMMP", resourceCulture);
             }
         }
         

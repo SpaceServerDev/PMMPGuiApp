@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
-using PMMPGuiApp.Properties;
 using PMMPGuiApp.Data;
+using PMMPGuiApp.Windows.PoggitWindow;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -95,7 +95,7 @@ namespace PMMPGuiApp {
 
         private async void executePMMP_Click(object sender, RoutedEventArgs e) {
             if (download) {
-                textboxApeendToAddTimestamp("\n"+ Properties.Resources.DownloadPMMP);
+                textboxApeendToAddTimestamp(Properties.Resources.DownloadPMMP);
                 return;
             }
             if (process == null) {
@@ -118,8 +118,6 @@ namespace PMMPGuiApp {
                         ProcessStartInfo info = new ProcessStartInfo();
                         info.FileName = "cmd.exe";
                         info.Arguments = "/C " + path + @"\start.cmd";
-                        //info.FileName = path + @"\bin\php\php.exe";
-                        //info.Arguments = "-c " + path + @"\bin\php " + path + "\\PocketMine-MP.phar || pause";
                         info.RedirectStandardInput = true;
                         info.UseShellExecute = false;
                         info.RedirectStandardOutput = true;
@@ -132,6 +130,16 @@ namespace PMMPGuiApp {
                         process.Start();
                         process.BeginOutputReadLine();
                         if (!File.Exists(path + @"\server.properties")) {
+                            MessageBoxResult result = MessageBox.Show(Properties.Resources.AcceptLicense+"\n"+Properties.Resources.License+"\n"+Properties.Resources.Agree, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                            if(result == MessageBoxResult.No) {
+                                this.filesave = true;
+                                useTextBoxInAsync(Properties.Resources.NotAgreeLicense,true);
+                                if (Process.GetProcessById(processData.getProcess()).ProcessName == "php") {
+                                    Process.GetProcessById(processData.getProcess()).Kill();
+                                }
+                                process.Dispose();
+                                return;
+                            }
                             process.StandardInput.WriteLine(Properties.Resources.SelectLanguage);
                             process.StandardInput.WriteLine("y");
                             process.StandardInput.WriteLine("y");
@@ -142,10 +150,14 @@ namespace PMMPGuiApp {
                     MenuItem_open_button.Header = Properties.Resources.StopPMMP;
                     open_button.Content = Properties.Resources.StopPMMP;
                 } else {
-                    process.StandardInput.WriteLine("stop");
+                    await Task.Run(() => {
+                        process.StandardInput.WriteLine("stop");
+                        while(isOpenPMMP())
+                    });
                     process.Kill();
                     MenuItem_open_button.Header = Properties.Resources.ExecutePMMP;
                     open_button.Content = Properties.Resources.ExecutePMMP;
+                    textboxApeendToAddTimestamp(Properties.Resources.StoppedPMMP);
                 }
             } else {
                 textboxApeendToAddTimestamp(Properties.Resources.PMMPNotFound);
@@ -217,7 +229,7 @@ namespace PMMPGuiApp {
 
         private void SearchPoggit_Click(object sender, RoutedEventArgs e) {
             if (!isOpenPMMP()) {
-                PoggitWindow.PoggitWindow window = new(this);
+                PoggitWindow window = new(this);
                 window.Owner = this;
                 window.ShowDialog();
             } else {
@@ -234,7 +246,7 @@ namespace PMMPGuiApp {
         }
 
         private void other_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("PMMPGui version 0.5.2\n\nCopylight(C)2021 yurisi\nAll rights reserved.\n\ngithub\nhttps://github.com/yurisi0212/PMMPGuiApp", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("PMMPGui version 0.5.2\n\nCopylight(C)2021 yurisi\nAll rights reserved.\n\ngithub\nhttps://github.com/yurisi0212/PMMPGuiApp\n\nPocketMine-MP\ngithub\nhttps://github.com/pmmp/PocketMine-MP", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Input_Click(object sender, RoutedEventArgs e) {
@@ -363,7 +375,7 @@ namespace PMMPGuiApp {
 
         private void sendPMMPCommand() {
             if (download) {
-                textboxApeend("\n"+ Properties.Resources.DownloadingPMMP + "\n");
+                textboxApeend(Properties.Resources.DownloadingPMMP + "\n");
                 return;
             }
             if (!isOpenPMMP()) {

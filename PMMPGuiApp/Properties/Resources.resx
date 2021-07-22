@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AcceptLicense" xml:space="preserve">
+    <value>To use PocketMine-MP, you need to agree to the license.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="Agree" xml:space="preserve">
+    <value>Do you agree?</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="AlreadyExecutePMMP" xml:space="preserve">
     <value>It looks like PMMP is already running.</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -208,6 +216,17 @@
   <data name="KillPMMP" xml:space="preserve">
     <value>Force the server to close</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="License" xml:space="preserve">
+    <value>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="NotAgreeLicense" xml:space="preserve">
+    <value>If you do not agree to the license, you cannot use this software.</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="NotBeSavedforPMMPisRunning" xml:space="preserve">
     <value>If you do not press [Stop PMMP], some data will not be saved.</value>
@@ -312,6 +331,10 @@
   <data name="Send" xml:space="preserve">
     <value>Send</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="StoppedPMMP" xml:space="preserve">
+    <value>PMMP has been successfully completed.</value>
+    <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="StopPMMP" xml:space="preserve">
     <value>StopPMMP</value>
