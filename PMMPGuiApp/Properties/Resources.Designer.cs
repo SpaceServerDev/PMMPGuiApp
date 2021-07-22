@@ -316,6 +316,15 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
+        ///   The PMMP is currently being downloaded. You can search for it when it is finished downloading. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NotDownloadforDownloading {
+            get {
+                return ResourceManager.GetString("NotDownloadforDownloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   You cannot download while PMMP is running; please stop PMMP. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotDownloadforPMMPisRunning {
@@ -546,6 +555,15 @@ namespace PMMPGuiApp.Properties {
         public static string StoppedPMMP {
             get {
                 return ResourceManager.GetString("StoppedPMMP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PMMP stop processing is in progress. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string StoppingPMMPNow {
+            get {
+                return ResourceManager.GetString("StoppingPMMPNow", resourceCulture);
             }
         }
         

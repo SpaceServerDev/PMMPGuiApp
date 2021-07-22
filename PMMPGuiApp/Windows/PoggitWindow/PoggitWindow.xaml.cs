@@ -90,6 +90,14 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
             }
         }
 
+        private void SearchTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) {
+            if (download) {
+                label.Text = "現在ダウンロード中です。しばらくお待ち下さい。";
+                return;
+            }
+            search();
+        }
+
         private void search() {
             combo.SelectedIndex = 0;
             pd.getSearchPoggitData(SearchTextBox.Text);
@@ -101,7 +109,6 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
         }
 
         private async void reload(bool update=false) {
-            
             progress.Visibility = Visibility.Visible;
             PluginList.ItemsSource = null;
             ObservableCollection<PoggitData> data = new ObservableCollection<PoggitData>();
@@ -192,6 +199,6 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
             PluginList.ScrollIntoView(PluginList.SelectedItem);
         }
 
-       
+        
     }
 }

@@ -24,7 +24,6 @@ namespace PMMPGuiApp.Data {
             this.window = window;
         }
 
-
         public void setList() {
             JArray jsondata;
             if (!File.Exists(path + @"\PoggitData.data")) {
@@ -46,7 +45,7 @@ namespace PMMPGuiApp.Data {
                     pd.Name = jsondata[i]["name"].ToString();
                     pd.DownloadUrl = jsondata[i]["artifact_url"].ToString() + "/" + pd.Name + ".phar";
                     pd.AboutUrl = jsondata[i]["html_url"].ToString();
-                    pd.Image = @"../Image/no_image_square.jpg";
+                    pd.Image = @"../../Image/no_image_square.jpg";
                     if (jsondata[i]["icon_url"].ToString() != "") {
                         pd.Image = jsondata[i]["icon_url"].ToString();
                     }
@@ -111,7 +110,6 @@ namespace PMMPGuiApp.Data {
             return pd;
         }
 
-
         public int getMax() {
             return maxValue;
         }
@@ -120,8 +118,6 @@ namespace PMMPGuiApp.Data {
             poggitList = null;
             GC.Collect();
         }
-
-
     }
 
     internal class PoggitListData {
@@ -156,12 +152,12 @@ namespace PMMPGuiApp.Data {
 
         public string ToApi { get; set; }
 
-
         public RelayCommand ClickCommand {
             get {
                 return new RelayCommand(() => {
                     if (!download) {
                         using (System.Net.WebClient wc = new()) {
+                            Directory.CreateDirectory(System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui\plugins\");
                             wc.DownloadFile(DownloadUrl, System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui\plugins\" + Name + ".phar");
                             download = true;
                             window.textboxApeendToAddTimestamp("[PluginManager]" + Name + "をインストールしました。\n");

@@ -41,7 +41,7 @@
 
                 
                 <Grid Grid.Column="2">
-                    <TextBox x:Name="SearchTextBox"  FontSize="12" Margin="0,5,0,10"  PreviewKeyDown="SearchTextBox_PreviewKeyDown"/>
+                    <TextBox x:Name="SearchTextBox"  FontSize="12" Margin="0,5,0,10" TextChanged="SearchTextBox_TextChanged"  PreviewKeyDown="SearchTextBox_PreviewKeyDown"/>
                 </Grid>
                 <Grid Grid.Column="3">
                     <Button Content="検索" FontSize="12" Margin="0,5,10,10" Click="SearchButton_Click"/>

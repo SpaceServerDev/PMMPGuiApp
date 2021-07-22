@@ -45,6 +45,11 @@ namespace PMMPGuiApp {
         /// </summary>
         private bool filesave = false;
 
+        /// <summary>
+        /// Flag to check if the system is stopped
+        /// </summary>
+        private bool stop = false;
+
         public MainWindow() {
             InitializeComponent();
         }
@@ -112,7 +117,7 @@ namespace PMMPGuiApp {
             }
             if (File.Exists(path + @"\start.cmd")) {
                 if (!isOpenPMMP()) {
-                    textboxApeend("\n>>"+Properties.Resources.PMMPExecuteNow+"\n\n");
+                    textboxApeend("\n>>" + Properties.Resources.PMMPExecuteNow + "\n\n");
                     await Task.Run(() => {
                         process = new Process();
                         ProcessStartInfo info = new ProcessStartInfo();
@@ -130,14 +135,17 @@ namespace PMMPGuiApp {
                         process.Start();
                         process.BeginOutputReadLine();
                         if (!File.Exists(path + @"\server.properties")) {
-                            MessageBoxResult result = MessageBox.Show(Properties.Resources.AcceptLicense+"\n"+Properties.Resources.License+"\n"+Properties.Resources.Agree, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                            if(result == MessageBoxResult.No) {
-                                this.filesave = true;
-                                useTextBoxInAsync(Properties.Resources.NotAgreeLicense,true);
-                                if (Process.GetProcessById(processData.getProcess()).ProcessName == "php") {
-                                    Process.GetProcessById(processData.getProcess()).Kill();
-                                }
+                            MessageBoxResult result = MessageBox.Show(Properties.Resources.AcceptLicense + "\n" + Properties.Resources.License + "\n" + Properties.Resources.Agree, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                            if (result == MessageBoxResult.No) {
+                                filesave = true;
+                                useSystemMessageInAsync(Properties.Resources.NotAgreeLicense);
+                                try {
+                                    if (Process.GetProcessById(getPMMPProcessId()).ProcessName == "php") {
+                                        Process.GetProcessById(getPMMPProcessId()).Kill();
+                                    }
+                                } catch { }
                                 process.Dispose();
+                                asyncStartText();
                                 return;
                             }
                             process.StandardInput.WriteLine(Properties.Resources.SelectLanguage);
@@ -146,17 +154,21 @@ namespace PMMPGuiApp {
                             process.StandardInput.WriteLine("e");
                         }
                     });
-                    this.filesave = true;
-                    MenuItem_open_button.Header = Properties.Resources.StopPMMP;
-                    open_button.Content = Properties.Resources.StopPMMP;
+                    filesave = true;
+                    changeStopText();
                 } else {
+                    if (stop) {
+                        textboxApeendToAddTimestamp(Properties.Resources.StoppingPMMPNow);
+                        return;
+                    }
+                    stop = true;
                     await Task.Run(() => {
                         process.StandardInput.WriteLine("stop");
-                        while(isOpenPMMP())
+                        while (isOpenPMMP());
                     });
+                    stop = false;
                     process.Kill();
-                    MenuItem_open_button.Header = Properties.Resources.ExecutePMMP;
-                    open_button.Content = Properties.Resources.ExecutePMMP;
+                    changeStartText();
                     textboxApeendToAddTimestamp(Properties.Resources.StoppedPMMP);
                 }
             } else {
@@ -177,8 +189,7 @@ namespace PMMPGuiApp {
             if (process != null) {
                 try {
                     Process.GetProcessById(getPMMPProcessId()).Kill();
-                    MenuItem_open_button.Header = Properties.Resources.ExecutePMMP;
-                    open_button.Content = Properties.Resources.ExecutePMMP;
+                    changeStartText();
                     textboxApeendToAddTimestamp(Properties.Resources.KillingPMMP);
                     return;
                 } catch {
@@ -226,8 +237,14 @@ namespace PMMPGuiApp {
                 MessageBox.Show(Properties.Resources.NotDownloadforPMMPisRunning, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        
+       
 
         private void SearchPoggit_Click(object sender, RoutedEventArgs e) {
+            if (download) {
+                MessageBox.Show(Properties.Resources.NotDownloadforDownloading, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             if (!isOpenPMMP()) {
                 PoggitWindow window = new(this);
                 window.Owner = this;
@@ -280,12 +297,14 @@ namespace PMMPGuiApp {
             if (process != null) {
                 string taskkill = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe");
                 using (var procKiller = new System.Diagnostics.Process()) {
-                    procKiller.StartInfo.FileName = taskkill;
-                    procKiller.StartInfo.Arguments = string.Format("/PID {0} /T /F", process.Id);
-                    procKiller.StartInfo.CreateNoWindow = true;
-                    procKiller.StartInfo.UseShellExecute = false;
-                    procKiller.Start();
-                    procKiller.WaitForExit();
+                    try {
+                        procKiller.StartInfo.FileName = taskkill;
+                        procKiller.StartInfo.Arguments = string.Format("/PID {0} /T /F", process.Id);
+                        procKiller.StartInfo.CreateNoWindow = true;
+                        procKiller.StartInfo.UseShellExecute = false;
+                        procKiller.Start();
+                        procKiller.WaitForExit();
+                    } catch { }
                 }
             }
         }
@@ -319,25 +338,25 @@ namespace PMMPGuiApp {
 
             using (System.Net.WebClient wc = new()) {
 
-                useTextBoxInAsync(Properties.Resources.DownloadPMMP + "\n", true);
+                useSystemMessageInAsync(Properties.Resources.DownloadPMMP + "\n");
                 wc.DownloadFile(urls[0], path + @"\PocketMine-MP.phar");
 
                 if (!File.Exists(path + @"\bin\php\php.exe")) {
                     using (PowerShell powerShell = PowerShell.Create()) {
-                        useTextBoxInAsync(Properties.Resources.DownloadBath + "\n", true);
+                        useSystemMessageInAsync(Properties.Resources.DownloadBath + "\n");
                         wc.DownloadFile(urls[1], path + @"\start.cmd");
-                        useTextBoxInAsync(Properties.Resources.DownloadBin + "\n", true);
+                        useSystemMessageInAsync(Properties.Resources.DownloadBin + "\n");
                         wc.DownloadFile(urls[2], path + @"\PHP-7.4-Windows-x64.zip");
-                        useTextBoxInAsync(Properties.Resources.ExtractBin + "\n", true);
+                        useSystemMessageInAsync(Properties.Resources.ExtractBin + "\n");
                         ZipFile.ExtractToDirectory(urls[5], path);
                         File.Delete(urls[5]);
-                        useTextBoxInAsync(Properties.Resources.ExecuteRuntime + "\n", true);
+                        useSystemMessageInAsync(Properties.Resources.ExecuteRuntime + "\n");
                         Process.Start(urls[6]);
-                        useTextBoxInAsync(Properties.Resources.DownloadComposer + "\n", true);
+                        useSystemMessageInAsync(Properties.Resources.DownloadComposer + "\n");
                         wc.DownloadFile(urls[3], path + @"\composer.json");
                         wc.DownloadFile(urls[4], path + @"\bin\composer.phar");
                         wc.Dispose();
-                        useTextBoxInAsync(Properties.Resources.InstallComposer + "\n", true);
+                        useSystemMessageInAsync(Properties.Resources.InstallComposer + "\n");
                         composerInstall("cd " + path, powerShell);
                         composerInstall(@"bin\php\php.exe bin\composer.phar install", powerShell);
                         powerShell.Stop();
@@ -347,7 +366,7 @@ namespace PMMPGuiApp {
 
             DateTime end = DateTime.Now;
             TimeSpan ts = end - start;
-            useTextBoxInAsync(Properties.Resources.InstallComplete + " (" + ts.TotalSeconds + Properties.Resources.Seconds+ ") >> \"" + path + "\"" +  ")\n\n", true);
+            useSystemMessageInAsync(Properties.Resources.InstallComplete + " (" + ts.TotalSeconds + Properties.Resources.Seconds+ ") >> \"" + path + "\"" +  "\n\n");
             return false;
         }
 
@@ -410,29 +429,29 @@ namespace PMMPGuiApp {
             useTextBoxInAsync(e.Data + "\n");
         }
 
-        private void useTextBoxInAsync(string str, bool useTimestamp = false) {
-            this.Dispatcher.Invoke(() => {
-                if (isOpenPMMP()) {
+        private void useTextBoxInAsync(string str) {
+            Dispatcher.Invoke(() => {
+                if (!isOpenPMMP()) return;
                     if (filesave) {
                         if (processData.getProcess() != getPMMPProcessId()) {
                             processData.setProcess(getPMMPProcessId().ToString());
                             filesave = false;
                         }
                     }
-
-                } else {
-                    MenuItem_open_button.Header = Properties.Resources.ExecutePMMP;
-                    open_button.Content = Properties.Resources.ExecutePMMP;
-                }
-                if (useTimestamp) {
-                    textboxApeendToAddTimestamp(str);
-                } else {
                     textboxApeend(str);
-                }
             });
         }
 
-        public void textboxApeendToAddTimestamp(string str) {
+        private void useSystemMessageInAsync(string str) {
+            Dispatcher.Invoke(() => {
+                if (!isOpenPMMP()) {
+                    changeStartText();
+                }
+                textboxApeendToAddTimestamp(str);
+            });
+        }
+
+       public void textboxApeendToAddTimestamp(string str) {
             DateTime date = DateTime.Now;
             Output_textbox.AppendText("[" + date.ToString("HH:mm:ss") + "] [PMMPGUI]: " + str + "\n");
             Output_textbox.ScrollToEnd();
@@ -441,6 +460,22 @@ namespace PMMPGuiApp {
         private void textboxApeend(String str) {
             Output_textbox.AppendText(str);
             Output_textbox.ScrollToEnd();
+        }
+
+        private void asyncStartText() {
+            Dispatcher.Invoke(() => {
+                changeStartText();
+            });
+        }
+
+        private void changeStartText() {
+            MenuItem_open_button.Header = Properties.Resources.ExecutePMMP;
+            open_button.Content = Properties.Resources.ExecutePMMP;
+        }
+
+        private void changeStopText() {
+            MenuItem_open_button.Header = Properties.Resources.StopPMMP;
+            open_button.Content = Properties.Resources.StopPMMP;
         }
 
         private bool isOpenPMMP() {
@@ -454,10 +489,6 @@ namespace PMMPGuiApp {
                     }
                 }
             } catch { }
-            /*if (Process.GetProcessById(process.Id).HasExited) return false;
-            if (Process.GetProcessById(process.Id).ProcessName == "php") {
-                return true;
-            }*/
 
             return false;
         }
@@ -473,13 +504,7 @@ namespace PMMPGuiApp {
                     }
                 } catch (InvalidOperationException) { }
             }
-            /*try {
-                if (Process.GetProcessById(process.Id).ProcessName == "php") {
-                    return Convert.ToInt32(process.Id);
-                }
-            } catch (InvalidOperationException) { }*/
             return -1;
         }
     }
 }
-

@@ -232,6 +232,10 @@ the Free Software Foundation, either version 3 of the License, or
     <value>[PMMPを停止する]を押さないと一部データが保存されません。</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="NotDownloadforDownloading" xml:space="preserve">
+    <value>現在PMMPをダウンロード中です。ダウンロードが終わったら検索することができます。</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="NotDownloadforPMMPisRunning" xml:space="preserve">
     <value>PMMP実行中にはダウンロードできません。PMMPを停止してください。</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -338,6 +342,10 @@ the Free Software Foundation, either version 3 of the License, or
   </data>
   <data name="StoppedPMMP" xml:space="preserve">
     <value>PMMPが正常に終了しました</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="StoppingPMMPNow" xml:space="preserve">
+    <value>PMMP停止処理中です。</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="StopPMMP" xml:space="preserve">

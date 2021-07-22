@@ -232,6 +232,10 @@ the Free Software Foundation, either version 3 of the License, or
     <value>If you do not press [Stop PMMP], some data will not be saved.</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="NotDownloadforDownloading" xml:space="preserve">
+    <value>The PMMP is currently being downloaded. You can search for it when it is finished downloading.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="NotDownloadforPMMPisRunning" xml:space="preserve">
     <value>You cannot download while PMMP is running; please stop PMMP.</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -334,6 +338,10 @@ the Free Software Foundation, either version 3 of the License, or
   </data>
   <data name="StoppedPMMP" xml:space="preserve">
     <value>PMMP has been successfully completed.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="StoppingPMMPNow" xml:space="preserve">
+    <value>PMMP stop processing is in progress.</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
   <data name="StopPMMP" xml:space="preserve">
