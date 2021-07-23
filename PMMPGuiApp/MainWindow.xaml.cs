@@ -262,7 +262,7 @@ namespace PMMPGuiApp {
         }
 
         private void other_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("PMMPGui version 0.5.2\n\nCopylight(C)2021 yurisi\nAll rights reserved.\n\ngithub\nhttps://github.com/yurisi0212/PMMPGuiApp\n\nPocketMine-MP\ngithub\nhttps://github.com/pmmp/PocketMine-MP", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("PMMPGui version 0.7\n\nCopylight(C)2021 yurisi\nAll rights reserved.\n\ngithub\nhttps://github.com/yurisi0212/PMMPGuiApp\n\nPocketMine-MP\ngithub\nhttps://github.com/pmmp/PocketMine-MP", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Input_Click(object sender, RoutedEventArgs e) {

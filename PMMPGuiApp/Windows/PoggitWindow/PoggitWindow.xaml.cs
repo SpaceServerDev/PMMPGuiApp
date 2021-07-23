@@ -70,25 +70,6 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
             this.Close();
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e) {
-            if (download) {
-                label.Text = Properties.Resources.PluginListDownloadingNow;
-                return;
-            }
-            search();
-        }
-
-        private void SearchTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e) {
-            if (download) {
-                label.Text = Properties.Resources.PluginListDownloadingNow;
-                return;
-            }
-            Key key = e.Key;
-            if (key == Key.Enter) {
-                search();
-            }
-        }
-
         private void SearchTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) {
             if (download) {
                 label.Text = Properties.Resources.PluginListDownloadingNow;
@@ -143,6 +124,10 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
             pd = null;
         }
 
+        public void AddPlugin(string plugin) {
+            label.Text = Properties.Resources.Introduction+ " >> " + plugin;
+        }
+
         private void changePageText() {
             pageText.Text = page + "/" + pd.getMax();
         }
@@ -159,6 +144,7 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
             PluginList.SelectedIndex = 0;
             PluginList.ScrollIntoView(PluginList.SelectedItem);
         }
+
         private async void NextButton_Click(object sender, RoutedEventArgs e) {
             if (page == pd.getMax()) return;
             page++;
@@ -197,7 +183,5 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
             PluginList.SelectedIndex = 0;
             PluginList.ScrollIntoView(PluginList.SelectedItem);
         }
-
-        
     }
 }

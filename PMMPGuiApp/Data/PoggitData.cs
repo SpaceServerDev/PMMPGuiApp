@@ -171,7 +171,8 @@ namespace PMMPGuiApp.Data {
                             Directory.CreateDirectory(System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui\plugins\");
                             wc.DownloadFile(DownloadUrl, System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui\plugins\" + Name + ".phar");
                             download = true;
-                            window.textboxApeendToAddTimestamp("[PluginManager]" + Name + "をインストールしました。\n");
+                            window.textboxApeendToAddTimestamp("[PluginManager] Install>>" + Name + "\n");
+                            sub.AddPlugin(Name);
                         }
                     }
                 });
