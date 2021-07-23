@@ -22,14 +22,14 @@ namespace PMMPGuiApp.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    public class Resources_ja_JPtest {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resources_ja_JPtest() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace PMMPGuiApp.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PMMPGuiApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PMMPGuiApp.Properties.Resources.ja-JPtest", typeof(Resources_ja_JPtest).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   To use PocketMine-MP, you need to agree to the license. に類似しているローカライズされた文字列を検索します。
+        ///   PocketMine-MPを使用するにはライセンスに同意する必要があります。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AcceptLicense {
             get {
@@ -70,7 +70,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Do you agree? に類似しているローカライズされた文字列を検索します。
+        ///   同意しますか？ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Agree {
             get {
@@ -79,16 +79,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Already downloading. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string AlreadyDownloadNow {
-            get {
-                return ResourceManager.GetString("AlreadyDownloadNow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   It looks like PMMP is already running. に類似しているローカライズされた文字列を検索します。
+        ///   すでにPMMPが起動しているようです に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AlreadyExecutePMMP {
             get {
@@ -97,7 +88,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Download is in progress. Do you want to force quit? に類似しているローカライズされた文字列を検索します。
+        ///   ダウンロードが進行中です。強制終了しますか？ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ConfirmDownloadProgress {
             get {
@@ -106,7 +97,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Do you want to kill PMMP? に類似しているローカライズされた文字列を検索します。
+        ///   PMMPを強制終了しますか？ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ConfirmKillPMMP {
             get {
@@ -115,16 +106,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Downloading data now. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string DataDownloadNow {
-            get {
-                return ResourceManager.GetString("DataDownloadNow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   more に類似しているローカライズされた文字列を検索します。
+        ///   詳細 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Details {
             get {
@@ -133,7 +115,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   download に類似しているローカライズされた文字列を検索します。
+        ///   ダウンロード に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Download {
             get {
@@ -142,7 +124,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Downloading batch file... に類似しているローカライズされた文字列を検索します。
+        ///   バッチファイルダウンロード中... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DownloadBath {
             get {
@@ -151,7 +133,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Downloading binary... に類似しているローカライズされた文字列を検索します。
+        ///   バイナリダウンロード中... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DownloadBin {
             get {
@@ -160,7 +142,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Downloading files related to composer... に類似しているローカライズされた文字列を検索します。
+        ///   composer関連ファイルダウンロード中... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DownloadComposer {
             get {
@@ -169,7 +151,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   The PMMP is currently being downloaded. Please wait for a while. に類似しているローカライズされた文字列を検索します。
+        ///   現在PMMPダウンロード中です。しばらくお待ち下さい。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DownloadingPMMP {
             get {
@@ -178,7 +160,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Downloading PocketMine-MP now... に類似しているローカライズされた文字列を検索します。
+        ///   PocketMine-MPダウンロード中... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DownloadPMMP {
             get {
@@ -187,7 +169,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Edit(_E) に類似しているローカライズされた文字列を検索します。
+        ///   編集(_E) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Edit {
             get {
@@ -196,7 +178,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   English に類似しているローカライズされた文字列を検索します。
+        ///   英語 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string English {
             get {
@@ -205,7 +187,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Start PMMP に類似しているローカライズされた文字列を検索します。
+        ///   PMMPを起動する に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ExecutePMMP {
             get {
@@ -214,7 +196,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   The Windows Runtime Installer will launch. Please install the software manually. に類似しているローカライズされた文字列を検索します。
+        ///   Windowsランタイムインストーラーが起動します。手動でのインストールをお願いします。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ExecuteRuntime {
             get {
@@ -223,7 +205,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Exit に類似しているローカライズされた文字列を検索します。
+        ///   終了 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Exit {
             get {
@@ -232,7 +214,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Decompressing binary... に類似しているローカライズされた文字列を検索します。
+        ///   バイナリの解凍中... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ExtractBin {
             get {
@@ -241,7 +223,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   File(_F) に類似しているローカライズされた文字列を検索します。
+        ///   ファイル(_F) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string File {
             get {
@@ -250,7 +232,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   First に類似しているローカライズされた文字列を検索します。
+        ///   最初 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string First {
             get {
@@ -259,7 +241,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Get the latest information に類似しているローカライズされた文字列を検索します。
+        ///   最新情報を取得 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string GetLatestInfo {
             get {
@@ -268,16 +250,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Getting the latest information on the plugin list. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string GetPluginListNow {
-            get {
-                return ResourceManager.GetString("GetPluginListNow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Installation is now complete. に類似しているローカライズされた文字列を検索します。
+        ///   インストールが完了しました。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string InstallComplete {
             get {
@@ -286,7 +259,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Installing composer...... に類似しているローカライズされた文字列を検索します。
+        ///   composerインストール中...... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string InstallComposer {
             get {
@@ -295,7 +268,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Install PocketMine-MP. に類似しているローカライズされた文字列を検索します。
+        ///   PocketMine-MPをインストールします。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string InstallPMMP {
             get {
@@ -304,7 +277,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Include the server engine. に類似しているローカライズされた文字列を検索します。
+        ///   サーバーエンジンを入れる に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string IntroducingCustomServerEngine {
             get {
@@ -313,7 +286,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   A custom server engine has been installed. に類似しているローカライズされた文字列を検索します。
+        ///   カスタムサーバーエンジンを導入しました に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string IntroducingTheCustomServerEngine {
             get {
@@ -322,7 +295,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   introduction に類似しているローカライズされた文字列を検索します。
+        ///   導入 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Introduction {
             get {
@@ -331,7 +304,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Kill PMMP. に類似しているローカライズされた文字列を検索します。
+        ///   PMMPを強制終了します に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string KillingPMMP {
             get {
@@ -340,7 +313,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Force the server to close に類似しているローカライズされた文字列を検索します。
+        ///   サーバーを強制終了する に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string KillPMMP {
             get {
@@ -349,7 +322,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Last に類似しているローカライズされた文字列を検索します。
+        ///   最後 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Last {
             get {
@@ -370,16 +343,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Loading Poggit plugin list. Please wait for it to complete. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string LoadingPluginList {
-            get {
-                return ResourceManager.GetString("LoadingPluginList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Next&gt;&gt; に類似しているローカライズされた文字列を検索します。
+        ///   次&gt;&gt; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Next {
             get {
@@ -388,7 +352,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   If you do not agree to the license, you cannot use this software. に類似しているローカライズされた文字列を検索します。
+        ///   ライセンスに同意しないとこのソフトウェアを使用することはできません。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotAgreeLicense {
             get {
@@ -397,7 +361,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   If you do not press [Stop PMMP], some data will not be saved. に類似しているローカライズされた文字列を検索します。
+        ///   [PMMPを停止する]を押さないと一部データが保存されません。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotBeSavedforPMMPisRunning {
             get {
@@ -406,7 +370,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   The PMMP is currently being downloaded. You can search for it when it is finished downloading. に類似しているローカライズされた文字列を検索します。
+        ///   現在PMMPをダウンロード中です。ダウンロードが終わったら検索することができます。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotDownloadforDownloading {
             get {
@@ -415,7 +379,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   You cannot download while PMMP is running; please stop PMMP. に類似しているローカライズされた文字列を検索します。
+        ///   PMMP実行中にはダウンロードできません。PMMPを停止してください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotDownloadforPMMPisRunning {
             get {
@@ -424,7 +388,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   I can&apos;t run PMMP on 32bit windows! に類似しているローカライズされた文字列を検索します。
+        ///   32bitのwindowsではPMMPを動かすことができません！ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotExecute32bit {
             get {
@@ -433,7 +397,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   PMMP is not running. に類似しているローカライズされた文字列を検索します。
+        ///   PMMPが起動していません。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotExecutePMMP {
             get {
@@ -442,7 +406,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   It cannot be installed when PMMP is executed. に類似しているローカライズされた文字列を検索します。
+        ///   PMMP実行時にはインストールできません。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotInstall_PMMPisRunning {
             get {
@@ -451,7 +415,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   The only valid server engine name is &quot;PocketMine-MP.phar&quot;. に類似しているローカライズされた文字列を検索します。
+        ///   サーバーエンジンの名前は&quot;PocketMine-MP.phar&quot;のみ有効です。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string NotMatchServerEngineFileName {
             get {
@@ -460,7 +424,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Other(_O) に類似しているローカライズされた文字列を検索します。
+        ///   その他(_O) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Other {
             get {
@@ -469,7 +433,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   PharFile に類似しているローカライズされた文字列を検索します。
+        ///   Pharファイル に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PharFile {
             get {
@@ -478,7 +442,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Select [File(_F)] &gt; [Install PMMP] に類似しているローカライズされた文字列を検索します。
+        ///   [ファイル(F)] から [PMMPをインストールする] を選択してください に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PleaseInstallPMMP {
             get {
@@ -487,7 +451,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Select [Run(_R)] &gt; [Force the server to close]. に類似しているローカライズされた文字列を検索します。
+        ///   [実行(R)]から[サーバーを強制終了する]をクリックしてください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PleaseKillPMMP {
             get {
@@ -496,7 +460,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Press the Start button. に類似しているローカライズされた文字列を検索します。
+        ///   起動ボタンを押して下さい。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PleasePressExecuteButton {
             get {
@@ -505,7 +469,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Select a plugin に類似しているローカライズされた文字列を検索します。
+        ///   プラグインを選択してください に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PleaseSelectPlugin {
             get {
@@ -514,7 +478,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Plugin に類似しているローカライズされた文字列を検索します。
+        ///   プラグイン に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Plugin {
             get {
@@ -523,25 +487,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   The plugin list is now up to date. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string PluginListDownloadComplete {
-            get {
-                return ResourceManager.GetString("PluginListDownloadComplete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   It is currently being downloaded. Please wait for a while. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string PluginListDownloadingNow {
-            get {
-                return ResourceManager.GetString("PluginListDownloadingNow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   PMMP is running... に類似しているローカライズされた文字列を検索します。
+        ///   PMMP起動中... に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PMMPExecuteNow {
             get {
@@ -550,7 +496,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Install/update PMMP に類似しているローカライズされた文字列を検索します。
+        ///   PMMPをインストール/アップデートする に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PMMPInstallAndUpdate {
             get {
@@ -559,7 +505,16 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   PMMP does not exist. に類似しているローカライズされた文字列を検索します。
+        ///   現在PMMPダウンロード中です。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string PMMPInstallNow {
+            get {
+                return ResourceManager.GetString("PMMPInstallNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   PMMPが存在していません に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PMMPNotFound {
             get {
@@ -568,7 +523,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Please update the file periodically by clicking [File(F)]-&gt;[Get the latest information]. に類似しているローカライズされた文字列を検索します。
+        ///   定期的に[ファイル(F)]→[最新情報を取得]で更新を行ってください。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string PoggitDefaultLabel {
             get {
@@ -577,7 +532,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   &lt;&lt;Prev に類似しているローカライズされた文字列を検索します。
+        ///   &lt;&lt;前 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Previous {
             get {
@@ -586,7 +541,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Run(_R) に類似しているローカライズされた文字列を検索します。
+        ///   実行(_R) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Run {
             get {
@@ -595,7 +550,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   PMMP is running. に類似しているローカライズされた文字列を検索します。
+        ///   PMMPが実行中です。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string RunningPMMP {
             get {
@@ -604,7 +559,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Search from the internet に類似しているローカライズされた文字列を検索します。
+        ///   インターネットから探す に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SearchFormTheInternet {
             get {
@@ -613,7 +568,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Search by MCBEForum (Japanese) に類似しているローカライズされた文字列を検索します。
+        ///   MCBEForumから探す(日本語) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SearchMCBEForum {
             get {
@@ -622,7 +577,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Search from poggit に類似しているローカライズされた文字列を検索します。
+        ///   poggitから探す に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SearchPoggit {
             get {
@@ -631,7 +586,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Search from poggit{English) に類似しているローカライズされた文字列を検索します。
+        ///   poggitから探す(英語) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SearchPoggitMenuItem {
             get {
@@ -640,7 +595,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Seconds に類似しているローカライズされた文字列を検索します。
+        ///   秒 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Seconds {
             get {
@@ -649,7 +604,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   eng に類似しているローカライズされた文字列を検索します。
+        ///   jpn に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SelectLanguage {
             get {
@@ -658,7 +613,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Select from local files に類似しているローカライズされた文字列を検索します。
+        ///   ローカルファイルから選択 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string SelectLocalFile {
             get {
@@ -667,7 +622,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Send に類似しているローカライズされた文字列を検索します。
+        ///   送信 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Send {
             get {
@@ -676,25 +631,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Sorted by downloads. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string SortDownload {
-            get {
-                return ResourceManager.GetString("SortDownload", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sorted by name. に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string SortName {
-            get {
-                return ResourceManager.GetString("SortName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   PMMP has been successfully completed. に類似しているローカライズされた文字列を検索します。
+        ///   PMMPが正常に終了しました に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string StoppedPMMP {
             get {
@@ -703,7 +640,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   PMMP stop processing is in progress. に類似しているローカライズされた文字列を検索します。
+        ///   PMMP停止処理中です。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string StoppingPMMPNow {
             get {
@@ -712,7 +649,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   StopPMMP に類似しているローカライズされた文字列を検索します。
+        ///   PMMPを停止する に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string StopPMMP {
             get {
@@ -721,7 +658,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Tools(_T) に類似しているローカライズされた文字列を検索します。
+        ///   ツール(_T) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Tools {
             get {
@@ -730,7 +667,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Download order に類似しているローカライズされた文字列を検索します。
+        ///   ダウンロード数 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string TurnDownload {
             get {
@@ -739,7 +676,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   name order に類似しているローカライズされた文字列を検索します。
+        ///   名前順 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string TurnName {
             get {
@@ -748,7 +685,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Update will take about 10 seconds, installation will take about 5 minutes. に類似しているローカライズされた文字列を検索します。
+        ///   アップデートは10秒ほど、インストールは5分程かかります に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string UpdateAndInstallTime {
             get {
@@ -757,7 +694,7 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   Version information に類似しているローカライズされた文字列を検索します。
+        ///   バージョン情報 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string VersionInfomation {
             get {
@@ -766,11 +703,20 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
-        ///   View in Explorer に類似しているローカライズされた文字列を検索します。
+        ///   エクスプローラーで表示 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ViewExproler {
             get {
                 return ResourceManager.GetString("ViewExproler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   しばらくお待ち下さい。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string WaitAMinutes {
+            get {
+                return ResourceManager.GetString("WaitAMinutes", resourceCulture);
             }
         }
     }

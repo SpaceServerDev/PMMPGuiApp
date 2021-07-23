@@ -107,7 +107,6 @@ namespace PMMPGuiApp {
                 if (processData.getProcess() != -1) {
                     try {
                         if (Process.GetProcessById(processData.getProcess()).ProcessName == "php") {
-                            Debug.Print((Process.GetProcessById(processData.getProcess()).ProcessName == "php").ToString());
                             textboxApeendToAddTimestamp(Properties.Resources.AlreadyExecutePMMP);
                             textboxApeendToAddTimestamp(Properties.Resources.PleaseKillPMMP);
                             return;

@@ -125,6 +125,10 @@
     <value>同意しますか？</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="AlreadyDownloadNow" xml:space="preserve">
+    <value>すでにダウンロード中です</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="AlreadyExecutePMMP" xml:space="preserve">
     <value>すでにPMMPが起動しているようです</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -136,6 +140,18 @@
   <data name="ConfirmKillPMMP" xml:space="preserve">
     <value>PMMPを強制終了しますか？</value>
     <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="DataDownloadNow" xml:space="preserve">
+    <value>データのダウンロード中です</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>詳細</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>ダウンロード</value>
+    <comment>PoggitWindow.xaml</comment>
   </data>
   <data name="DownloadBath" xml:space="preserve">
     <value>バッチファイルダウンロード中...</value>
@@ -185,6 +201,18 @@
     <value>ファイル(_F)</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="First" xml:space="preserve">
+    <value>最初</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="GetLatestInfo" xml:space="preserve">
+    <value>最新情報を取得</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="GetPluginListNow" xml:space="preserve">
+    <value>プラグインリスト最新情報の取得中です</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="InstallComplete" xml:space="preserve">
     <value>インストールが完了しました。</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -217,12 +245,24 @@
     <value>サーバーを強制終了する</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="Last" xml:space="preserve">
+    <value>最後</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
   <data name="License" xml:space="preserve">
     <value>This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.</value>
     <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="LoadingPluginList" xml:space="preserve">
+    <value>Poggitのプラグインリスト読込中です。完了するまでお待ち下さい</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>次&gt;&gt;</value>
+    <comment>PoggitWindow.xaml</comment>
   </data>
   <data name="NotAgreeLicense" xml:space="preserve">
     <value>ライセンスに同意しないとこのソフトウェアを使用することはできません。</value>
@@ -284,6 +324,14 @@ the Free Software Foundation, either version 3 of the License, or
     <value>プラグイン</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="PluginListDownloadComplete" xml:space="preserve">
+    <value>プラグインリストが最新になりました。</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="PluginListDownloadingNow" xml:space="preserve">
+    <value>現在ダウンロード中です。しばらくお待ち下さい。</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="PMMPExecuteNow" xml:space="preserve">
     <value>PMMP起動中...</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -299,6 +347,14 @@ the Free Software Foundation, either version 3 of the License, or
   <data name="PMMPNotFound" xml:space="preserve">
     <value>PMMPが存在していません</value>
     <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="PoggitDefaultLabel" xml:space="preserve">
+    <value>定期的に[ファイル(F)]→[最新情報を取得]で更新を行ってください。</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>&lt;&lt;前</value>
+    <comment>PoggitWindow.xaml</comment>
   </data>
   <data name="Run" xml:space="preserve">
     <value>実行(_R)</value>
@@ -340,6 +396,14 @@ the Free Software Foundation, either version 3 of the License, or
     <value>送信</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="SortDownload" xml:space="preserve">
+    <value>ダウンロード順に並べ替えました</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="SortName" xml:space="preserve">
+    <value>名前順に並べ替えました</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="StoppedPMMP" xml:space="preserve">
     <value>PMMPが正常に終了しました</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -355,6 +419,14 @@ the Free Software Foundation, either version 3 of the License, or
   <data name="Tools" xml:space="preserve">
     <value>ツール(_T)</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="TurnDownload" xml:space="preserve">
+    <value>ダウンロード数</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="TurnName" xml:space="preserve">
+    <value>名前順</value>
+    <comment>PoggitWindow.xaml</comment>
   </data>
   <data name="UpdateAndInstallTime" xml:space="preserve">
     <value>アップデートは10秒ほど、インストールは5分程かかります</value>

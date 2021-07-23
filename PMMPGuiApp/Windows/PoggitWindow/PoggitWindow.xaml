@@ -3,17 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:properties="clr-namespace:PMMPGuiApp.Properties"
         mc:Ignorable="d"
-        Title="PoggitPlugins" Height="500" Width="800"
+        Title="PMMPGui - PoggitPlugins" Height="500" Width="800"
         Closing="PoggitWindow_Closing"
         ResizeMode="NoResize">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="ファイル(_F)">
-                    <MenuItem Header="最新情報を取得" Click="get_Click"/>
+                <MenuItem Header="{x:Static properties:Resources.File}">
+                    <MenuItem Header="{x:Static properties:Resources.GetLatestInfo}" Click="get_Click"/>
                     <Separator />
-                    <MenuItem Header="終了" Click="exit_click"/>
+                    <MenuItem Header="{x:Static properties:Resources.Exit}" Click="exit_click"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -29,27 +30,23 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <ComboBox x:Name="combo" FontSize="12" Margin="10,5,0,10" DropDownClosed="combo_DropDownClosed" >
-                        <ComboBoxItem>名前順</ComboBoxItem>
-                        <ComboBoxItem>ダウンロード数</ComboBoxItem>
-                        <!--"<ComboBoxItem>最新</ComboBoxItem>-->
+                        <ComboBoxItem Content="{x:Static properties:Resources.TurnName}"/>
+                        <ComboBoxItem Content="{x:Static properties:Resources.TurnDownload}"/>
                     </ComboBox>
                 </Grid>
 
-                
+
                 <Grid Grid.Column="2">
-                    <TextBox x:Name="SearchTextBox"  FontSize="12" Margin="0,5,0,10" TextChanged="SearchTextBox_TextChanged"  PreviewKeyDown="SearchTextBox_PreviewKeyDown"/>
-                </Grid>
-                <Grid Grid.Column="3">
-                    <Button Content="検索" FontSize="12" Margin="0,5,10,10" Click="SearchButton_Click"/>
+                    <TextBox x:Name="SearchTextBox"  FontSize="12" Margin="0,5,0,10" TextChanged="SearchTextBox_TextChanged"/>
                 </Grid>
             </Grid>
 
             <Grid Grid.Row="1" Margin="10,0,10,0">
-                <TextBox x:Name="label" Text="定期的に[ファイル(F)]→[最新情報を取得]で更新を行ってください。" IsReadOnly="True"/>
+                <TextBox x:Name="label" Text="{x:Static properties:Resources.PoggitDefaultLabel}" IsReadOnly="True"/>
             </Grid>
 
             <Grid Grid.Row="2">
@@ -66,8 +63,8 @@
                                 <Grid Grid.Column="0">
                                     <StackPanel>
                                         <Image Source="{Binding Image}"  Width="60" Height="60"/>
-                                        <Button x:Name="AboutButton" Content="詳細" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Command="{Binding AboutClickCommand}"/>
-                                        <Button x:Name="DownloadButton" Content="ダウンロード" Width="60" FontSize="11" HorizontalAlignment="Left" Command="{Binding ClickCommand}"/>
+                                        <Button x:Name="AboutButton" Content="{x:Static properties:Resources.Details}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" Command="{Binding AboutClickCommand}"/>
+                                        <Button x:Name="DownloadButton" Content="{x:Static properties:Resources.Download}" Width="60" FontSize="11" HorizontalAlignment="Left" Command="{Binding ClickCommand}"/>
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Column="1">
@@ -85,7 +82,7 @@
                                     <TextBlock Text="{Binding ToApi}" FontSize="12"/>
                                 </TextBlock>
                                     <TextBlock>
-                                    <TextBlock Text="{Binding Download,StringFormat=ダウンロード数: {0}}" FontSize="12"/>  
+                                    <TextBlock Text="{Binding Download,StringFormat=Download: {0}}" FontSize="12"/>  
                                 </TextBlock>
 
 
@@ -105,19 +102,19 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <Button Content="最初" Width="50" Click="FirstButton_Click"/>
+                    <Button Content="{x:Static properties:Resources.First}" Width="50" Click="FirstButton_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <Button Content="&lt;&lt;前" Width="50" Click="PrevButton_Click"/>
+                    <Button Content="{x:Static properties:Resources.Previous}" Width="50" Click="PrevButton_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2">
                     <TextBlock x:Name="pageText" Text="0/0" Width="50" TextAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3">
-                    <Button Content="次>>" Width="50" Click="NextButton_Click"/>
+                    <Button Content="{x:Static properties:Resources.Next}" Width="50" Click="NextButton_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="4">
-                    <Button Content="最後" Width="50" Click="LastButton_Click"/>
+                    <Button Content="{x:Static properties:Resources.Last}" Width="50" Click="LastButton_Click"/>
                 </StackPanel>
             </Grid>
         </Grid>

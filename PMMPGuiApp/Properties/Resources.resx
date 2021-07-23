@@ -125,6 +125,10 @@
     <value>Do you agree?</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="AlreadyDownloadNow" xml:space="preserve">
+    <value>Already downloading.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="AlreadyExecutePMMP" xml:space="preserve">
     <value>It looks like PMMP is already running.</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -136,6 +140,18 @@
   <data name="ConfirmKillPMMP" xml:space="preserve">
     <value>Do you want to kill PMMP?</value>
     <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="DataDownloadNow" xml:space="preserve">
+    <value>Downloading data now.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>more</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>download</value>
+    <comment>PoggitWindow.xaml</comment>
   </data>
   <data name="DownloadBath" xml:space="preserve">
     <value>Downloading batch file...</value>
@@ -185,6 +201,18 @@
     <value>File(_F)</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="GetLatestInfo" xml:space="preserve">
+    <value>Get the latest information</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="GetPluginListNow" xml:space="preserve">
+    <value>Getting the latest information on the plugin list.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="InstallComplete" xml:space="preserve">
     <value>Installation is now complete.</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -217,12 +245,24 @@
     <value>Force the server to close</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="Last" xml:space="preserve">
+    <value>Last</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
   <data name="License" xml:space="preserve">
     <value>This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.</value>
     <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="LoadingPluginList" xml:space="preserve">
+    <value>Loading Poggit plugin list. Please wait for it to complete.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next&gt;&gt;</value>
+    <comment>PoggitWindow.xaml</comment>
   </data>
   <data name="NotAgreeLicense" xml:space="preserve">
     <value>If you do not agree to the license, you cannot use this software.</value>
@@ -284,6 +324,14 @@ the Free Software Foundation, either version 3 of the License, or
     <value>Plugin</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="PluginListDownloadComplete" xml:space="preserve">
+    <value>The plugin list is now up to date.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="PluginListDownloadingNow" xml:space="preserve">
+    <value>It is currently being downloaded. Please wait for a while.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="PMMPExecuteNow" xml:space="preserve">
     <value>PMMP is running...</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -295,6 +343,14 @@ the Free Software Foundation, either version 3 of the License, or
   <data name="PMMPNotFound" xml:space="preserve">
     <value>PMMP does not exist.</value>
     <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="PoggitDefaultLabel" xml:space="preserve">
+    <value>Please update the file periodically by clicking [File(F)]-&gt;[Get the latest information].</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>&lt;&lt;Prev</value>
+    <comment>PoggitWindow.xaml</comment>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Run(_R)</value>
@@ -336,6 +392,14 @@ the Free Software Foundation, either version 3 of the License, or
     <value>Send</value>
     <comment>MainWindow.xaml</comment>
   </data>
+  <data name="SortDownload" xml:space="preserve">
+    <value>Sorted by downloads.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
+  <data name="SortName" xml:space="preserve">
+    <value>Sorted by name.</value>
+    <comment>MainWindow.xaml.cs</comment>
+  </data>
   <data name="StoppedPMMP" xml:space="preserve">
     <value>PMMP has been successfully completed.</value>
     <comment>MainWindow.xaml.cs</comment>
@@ -351,6 +415,14 @@ the Free Software Foundation, either version 3 of the License, or
   <data name="Tools" xml:space="preserve">
     <value>Tools(_T)</value>
     <comment>MainWindow.xaml</comment>
+  </data>
+  <data name="TurnDownload" xml:space="preserve">
+    <value>Download order</value>
+    <comment>PoggitWindow.xaml</comment>
+  </data>
+  <data name="TurnName" xml:space="preserve">
+    <value>name order</value>
+    <comment>PoggitWindow.xaml</comment>
   </data>
   <data name="UpdateAndInstallTime" xml:space="preserve">
     <value>Update will take about 10 seconds, installation will take about 5 minutes.</value>

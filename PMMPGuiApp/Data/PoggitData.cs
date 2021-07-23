@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.CommandWpf;
 using Newtonsoft.Json.Linq;
+using PMMPGuiApp.Windows.PoggitWindow;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,8 +21,11 @@ namespace PMMPGuiApp.Data {
 
         private MainWindow window;
 
-        public PoggitData(MainWindow window) {
+        private PoggitWindow sub;
+
+        public PoggitData(MainWindow window,PoggitWindow sub) {
             this.window = window;
+            this.sub = sub;
         }
 
         public void setList() {
@@ -33,14 +37,12 @@ namespace PMMPGuiApp.Data {
             using (StreamReader reader = new(path + @"\PoggitData.data")) {
                 jsondata = JArray.Parse(reader.ReadLine());
             }
-            
 
             List<int> list = new();
 
-
             for (int i = 0; i < jsondata.Count; i++) {
                 if (!list.Contains(int.Parse(jsondata[i]["repo_id"].ToString()))) {
-                    PoggitListData pd = new PoggitListData(window);
+                    PoggitListData pd = new PoggitListData(window,sub);
                     pd.Id = int.Parse(jsondata[i]["id"].ToString());
                     pd.Name = jsondata[i]["name"].ToString();
                     pd.DownloadUrl = jsondata[i]["artifact_url"].ToString() + "/" + pd.Name + ".phar";
@@ -90,7 +92,14 @@ namespace PMMPGuiApp.Data {
         public void getSearchPoggitData(string str) {
             List<PoggitListData> pd = new();
             foreach(PoggitListData poggitlist in poggitList) {
-                if (poggitlist.Name.IndexOf(str, StringComparison.OrdinalIgnoreCase) >= 0) pd.Add(poggitlist);
+                if (poggitlist.Name.IndexOf(str, StringComparison.OrdinalIgnoreCase) >= 0) {
+                    pd.Add(poggitlist);
+                    continue;
+                }
+                if (poggitlist.Tagline.IndexOf(str, StringComparison.OrdinalIgnoreCase) >= 0) {
+                    pd.Add(poggitlist);
+                    continue;
+                }
             }
             maxValue = pd.Count / 20;
             if (pd.Count % 20 != 0) {
@@ -126,8 +135,11 @@ namespace PMMPGuiApp.Data {
 
         private MainWindow window;
 
-        public PoggitListData(MainWindow window) {
+        private PoggitWindow sub;
+
+        public PoggitListData(MainWindow window,PoggitWindow sub) {
             this.window = window;
+            this.sub = sub;
         }
 
         public int Id { get; set; }

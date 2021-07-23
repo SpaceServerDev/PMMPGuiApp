@@ -35,26 +35,26 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
 
         private void get_Click(object sender, RoutedEventArgs e) {
             if (download) {
-                MessageBoxResult result = MessageBox.Show("すでにダウンロード中です", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBoxResult result = MessageBox.Show(Properties.Resources.AlreadyDownloadNow, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            label.Text = "プラグインリスト最新情報の取得中です。";
+            label.Text = Properties.Resources.GetPluginListNow;
             pageText.Text = "0/0";
             reload(true);
         }
 
         private void combo_DropDownClosed(object sender, EventArgs e) {
             if (download) {
-                label.Text = "データのダウンロード中です。";
+                label.Text = Properties.Resources.DataDownloadNow;
                 combo.SelectedIndex = 0;
                 return;
             }
             if (combo.SelectedIndex == 0) {
                 pd.sortByName();
-                label.Text = "名前順に並べ替えました。";
+                label.Text = Properties.Resources.SortName;
             } else {
                 pd.sortByDownloadCount();
-                label.Text = "ダウンロード順に並べ替えました。";
+                label.Text = Properties.Resources.SortDownload;
             }
             
             source=pd.getPoggitDataInPage(0);
@@ -73,7 +73,7 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
 
         private void SearchButton_Click(object sender, RoutedEventArgs e) {
             if (download) {
-                label.Text = "現在ダウンロード中です。しばらくお待ち下さい。";
+                label.Text = Properties.Resources.PluginListDownloadingNow;
                 return;
             }
             search();
@@ -81,7 +81,7 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
 
         private void SearchTextBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e) {
             if (download) {
-                label.Text = "現在ダウンロード中です。しばらくお待ち下さい。";
+                label.Text = Properties.Resources.PluginListDownloadingNow;
                 return;
             }
             Key key = e.Key;
@@ -92,7 +92,7 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
 
         private void SearchTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) {
             if (download) {
-                label.Text = "現在ダウンロード中です。しばらくお待ち下さい。";
+                label.Text = Properties.Resources.PluginListDownloadingNow;
                 return;
             }
             search();
@@ -113,11 +113,11 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
             PluginList.ItemsSource = null;
             ObservableCollection<PoggitData> data = new ObservableCollection<PoggitData>();
             combo.SelectedIndex = 0;
-            pd = new(window);
+            pd = new(window,this);
             download = true;
             if (update) {
                 await Task.Run(() => { pd.DownloadString(); });
-                label.Text = "プラグインリストが最新になりました。";
+                label.Text = Properties.Resources.PluginListDownloadComplete;
             }
             await Task.Run(() => { pd.setList(); });
             pd.sortByName();
@@ -136,7 +136,7 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
 
         private void PoggitWindow_Closing(object sender, CancelEventArgs e) {
             if (download) {
-                MessageBoxResult result = MessageBox.Show("Poggitのプラグインリスト読込中です。完了するまでお待ち下さい", "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBoxResult result = MessageBox.Show(Properties.Resources.LoadingPluginList, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
                 e.Cancel = true;
                 return;
             }
