@@ -183,7 +183,7 @@
   </data>
   <data name="ExecutePMMP" xml:space="preserve">
     <value>PMMPを起動する</value>
-    <comment>MainWindow.xaml.cs,MainWindow.xaml</comment>
+    <comment>MainWindow.xaml,MainWindow.xaml.cs</comment>
   </data>
   <data name="ExecuteRuntime" xml:space="preserve">
     <value>Windowsランタイムインストーラーが起動します。手動でのインストールをお願いします。</value>

@@ -183,7 +183,7 @@
   </data>
   <data name="ExecutePMMP" xml:space="preserve">
     <value>Start PMMP</value>
-    <comment>MainWindow.xaml.cs,MainWindow.xaml</comment>
+    <comment>MainWindow.xaml,MainWindow.xaml.cs</comment>
   </data>
   <data name="ExecuteRuntime" xml:space="preserve">
     <value>The Windows Runtime Installer will launch. Please install the software manually.</value>

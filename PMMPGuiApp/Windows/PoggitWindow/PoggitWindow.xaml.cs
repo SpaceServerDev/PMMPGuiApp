@@ -26,7 +26,6 @@ namespace PMMPGuiApp.Windows.PoggitWindow {
         public PoggitWindow(MainWindow window) {
             this.window = window;
             InitializeComponent();
-
         }
 
         private  void PluginList_Loaded(object sender, RoutedEventArgs e) {

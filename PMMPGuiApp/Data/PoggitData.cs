@@ -55,8 +55,8 @@ namespace PMMPGuiApp.Data {
                     pd.Download = jsondata[i]["downloads"].ToString();
                     pd.RepositoryId = int.Parse(jsondata[i]["repo_id"].ToString());
                     pd.Version = jsondata[i]["version"].ToString();
-                    pd.FromApi = "指定なし";
-                    pd.ToApi = "指定なし";
+                    pd.FromApi = "-";
+                    pd.ToApi = "-";
                     if (jsondata[i]["api"].ToString() != "[]") {
                         pd.FromApi = jsondata[i]["api"][0]["from"].ToString();
                         pd.ToApi = jsondata[i]["api"][0]["to"].ToString();
@@ -115,7 +115,6 @@ namespace PMMPGuiApp.Data {
                 if (viewPoggitList.Count <= i) break;
                 pd.Add(viewPoggitList[i]);
             }
-
             return pd;
         }
 
