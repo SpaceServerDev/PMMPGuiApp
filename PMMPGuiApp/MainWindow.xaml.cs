@@ -71,9 +71,7 @@ namespace PMMPGuiApp {
                     Filter = Properties.Resources.PharFile + "|*.phar",
                 };
 
-                if (open.ShowDialog() != true) {
-                    return;
-                }
+                if (open.ShowDialog() != true) return;
 
                 if (Path.GetFileName(open.FileName) != "PocketMine-MP.phar") {
                     MessageBox.Show(Properties.Resources.NotMatchServerEngineFileName, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -162,7 +160,7 @@ namespace PMMPGuiApp {
                     stop = true;
                     await Task.Run(() => {
                         process.StandardInput.WriteLine("stop");
-                        while (isOpenPMMP());
+                        while (isOpenPMMP()) ;
                     });
                     stop = false;
                     process.Kill();
@@ -221,22 +219,20 @@ namespace PMMPGuiApp {
                 OpenFileDialog open = new OpenFileDialog() {
                     Title = Properties.Resources.PleaseSelectPlugin,
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                    Filter = Properties.Resources.PharFile+"|*.phar",
+                    Filter = Properties.Resources.PharFile + "|*.phar",
                 };
 
-                if (open.ShowDialog() != true) {
-                    return;
-                }
+                if (open.ShowDialog() != true) return;
 
                 if (File.Exists(path + @"\plugins\" + Path.GetFileName(open.FileName))) File.Delete(path + @"\plugins\" + Path.GetFileName(open.FileName));
                 File.Copy(open.FileName, path + @"\plugins\" + Path.GetFileName(open.FileName));
-                textboxApeendToAddTimestamp(Properties.Resources.Introduction+" >> "+ Path.GetFileNameWithoutExtension(open.FileName));
+                textboxApeendToAddTimestamp(Properties.Resources.Introduction + " >> " + Path.GetFileNameWithoutExtension(open.FileName));
             } else {
                 MessageBox.Show(Properties.Resources.NotDownloadforPMMPisRunning, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-        
-       
+
+
 
         private void SearchPoggit_Click(object sender, RoutedEventArgs e) {
             if (download) {
@@ -269,10 +265,7 @@ namespace PMMPGuiApp {
         }
 
         private void Input_textbox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e) {
-            Key key = e.Key;
-            if (key == Key.Enter && Input_textbox.Text != "") {
-                sendPMMPCommand();
-            }
+            if (e.Key == Key.Enter && Input_textbox.Text != "") sendPMMPCommand();
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e) {
@@ -285,7 +278,7 @@ namespace PMMPGuiApp {
 
             }
             if (isOpenPMMP()) {
-                MessageBoxResult result = MessageBox.Show(Properties.Resources.RunningPMMP+ Properties.Resources.ConfirmKillPMMP+"\n*"+ Properties.Resources.NotBeSavedforPMMPisRunning, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult result = MessageBox.Show(Properties.Resources.RunningPMMP + Properties.Resources.ConfirmKillPMMP + "\n*" + Properties.Resources.NotBeSavedforPMMPisRunning, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.No) {
                     e.Cancel = true;
                     return;
@@ -306,12 +299,13 @@ namespace PMMPGuiApp {
                 }
             }
         }
+
         private async void startPMMPInstall() {
             if (isOpenPMMP()) {
-                textboxApeend(Properties.Resources.NotInstall_PMMPisRunning+"\n");
+                textboxApeend(Properties.Resources.NotInstall_PMMPisRunning + "\n");
                 return;
             }
-            textboxApeend("\n+=+="+ Properties.Resources.InstallPMMP + " ..... ("+ Properties.Resources.UpdateAndInstallTime + ")=+=+\n\n");
+            textboxApeend("\n+=+=" + Properties.Resources.InstallPMMP + " ..... (" + Properties.Resources.UpdateAndInstallTime + ")=+=+\n\n");
             download = true;
             await Task.Run(() => this.download = pmmpInstall());
         }
@@ -326,18 +320,14 @@ namespace PMMPGuiApp {
                 path + @"\PHP-7.4-Windows-x64.zip",
                 path + @"\vc_redist.x64.exe"
             };
-
             if (!Environment.Is64BitProcess) {
                 MessageBox.Show(Properties.Resources.NotExecute32bit, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
             DateTime start = DateTime.Now;
-
             changeProgressBarVisiblity(Visibility.Visible);
             changeProgressBarValue(0);
-
-            using (System.Net.WebClient wc = new()) { 
+            using (System.Net.WebClient wc = new()) {
                 useSystemMessageInAsync(Properties.Resources.DownloadPMMP + "\n");
                 wc.DownloadFile(urls[0], path + @"\PocketMine-MP.phar");
                 changeProgressBarValue(10);
@@ -364,9 +354,9 @@ namespace PMMPGuiApp {
                         wc.DownloadFile(urls[4], path + @"\bin\composer.phar");
                         changeProgressBarValue(80);
                         useSystemMessageInAsync(Properties.Resources.InstallComposer + "\n");
-                        composerInstall("cd " + path, powerShell);
+                        usePowerShell("cd " + path, powerShell);
                         changeProgressBarValue(85);
-                        composerInstall(@"bin\php\php.exe bin\composer.phar install", powerShell);
+                        usePowerShell(@"bin\php\php.exe bin\composer.phar install", powerShell);
                         powerShell.Stop();
                     }
                 }
@@ -374,12 +364,12 @@ namespace PMMPGuiApp {
             changeProgressBarValue(100);
             DateTime end = DateTime.Now;
             TimeSpan ts = end - start;
-            useSystemMessageInAsync(Properties.Resources.InstallComplete + " (" + ts.TotalSeconds + Properties.Resources.Seconds+ ") >> \"" + path + "\"" +  "\n\n");
+            useSystemMessageInAsync(Properties.Resources.InstallComplete + " (" + ts.TotalSeconds + Properties.Resources.Seconds + ") >> \"" + path + "\"" + "\n\n");
             changeProgressBarVisiblity(Visibility.Hidden);
             return false;
         }
 
-        private void composerInstall(string command, PowerShell powerShell) {
+        private void usePowerShell(string command, PowerShell powerShell) {
             string[] parameter;
             parameter = command.Split(" ");
             PSCommand psCommand = new();
@@ -435,15 +425,11 @@ namespace PMMPGuiApp {
         }
 
         private void changeProgressBarVisiblity(Visibility visibility) {
-            Dispatcher.Invoke(() => {
-                progressBar.Visibility = visibility;
-            });
+            Dispatcher.Invoke(() => { progressBar.Visibility = visibility; });
         }
 
         private void changeProgressBarValue(int value) {
-            Dispatcher.Invoke(() => {
-                progressBar.Value = value;
-            });
+            Dispatcher.Invoke(() => { progressBar.Value = value; });
         }
 
         private void process_DataReceived(object sender, DataReceivedEventArgs e) {
@@ -453,26 +439,24 @@ namespace PMMPGuiApp {
         private void useTextBoxInAsync(string str) {
             Dispatcher.Invoke(() => {
                 if (!isOpenPMMP()) return;
-                    if (filesave) {
-                        if (processData.getProcess() != getPMMPProcessId()) {
-                            processData.setProcess(getPMMPProcessId().ToString());
-                            filesave = false;
-                        }
+                if (filesave) {
+                    if (processData.getProcess() != getPMMPProcessId()) {
+                        processData.setProcess(getPMMPProcessId().ToString());
+                        filesave = false;
                     }
-                    textboxApeend(str);
+                }
+                textboxApeend(str);
             });
         }
 
         private void useSystemMessageInAsync(string str) {
             Dispatcher.Invoke(() => {
-                if (!isOpenPMMP()) {
-                    changeStartText();
-                }
+                if (!isOpenPMMP()) changeStartText();
                 textboxApeendToAddTimestamp(str);
             });
         }
 
-       public void textboxApeendToAddTimestamp(string str) {
+        public void textboxApeendToAddTimestamp(string str) {
             DateTime date = DateTime.Now;
             Output_textbox.AppendText("[" + date.ToString("HH:mm:ss") + "] [PMMPGUI]: " + str + "\n");
             Output_textbox.ScrollToEnd();
@@ -484,9 +468,7 @@ namespace PMMPGuiApp {
         }
 
         private void asyncStartText() {
-            Dispatcher.Invoke(() => {
-                changeStartText();
-            });
+            Dispatcher.Invoke(() => { changeStartText(); });
         }
 
         private void changeStartText() {
@@ -503,26 +485,18 @@ namespace PMMPGuiApp {
             if (process == null) return false;
             try {
                 ManagementObjectSearcher mos = new(String.Format("Select * From Win32_Process Where ParentProcessID={0}", process.Id));
-
                 foreach (ManagementObject mo in mos.Get()) {
-                    if (Process.GetProcessById(Convert.ToInt32(mo["ProcessID"])).ProcessName == "php") {
-                        return true;
-                    }
+                    if (Process.GetProcessById(Convert.ToInt32(mo["ProcessID"])).ProcessName == "php") return true;
                 }
             } catch { }
-
             return false;
         }
 
         private int getPMMPProcessId() {
-
             ManagementObjectSearcher mos = new(String.Format("Select * From Win32_Process Where ParentProcessID={0}", process.Id));
-
             foreach (ManagementObject mo in mos.Get()) {
                 try {
-                    if (Process.GetProcessById(Convert.ToInt32(mo["ProcessID"])).ProcessName == "php") {
-                        return Convert.ToInt32(mo["ProcessID"]);
-                    }
+                    if (Process.GetProcessById(Convert.ToInt32(mo["ProcessID"])).ProcessName == "php") return Convert.ToInt32(mo["ProcessID"]);
                 } catch (InvalidOperationException) { }
             }
             return -1;
