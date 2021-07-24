@@ -1,6 +1,27 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PMMPGuiApp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PocketMineURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://jenkins.pmmp.io/job/PocketMine-MP/lastSuccessfulBuild/artifact/PocketMine-MP.phar</Value>
+    </Setting>
+    <Setting Name="StartcmdURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://jenkins.pmmp.io/job/PocketMine-MP/lastBuild/artifact/start.cmd</Value>
+    </Setting>
+    <Setting Name="BinURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://jenkins.pmmp.io/job/PHP-7.4-Aggregate/lastBuild/artifact/PHP-7.4-Windows-x64.zip</Value>
+    </Setting>
+    <Setting Name="ComposerJsonURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://raw.githubusercontent.com/pmmp/PocketMine-MP/stable/composer.json</Value>
+    </Setting>
+    <Setting Name="ComposerPharURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://getcomposer.org/download/latest-stable/composer.phar</Value>
+    </Setting>
+    <Setting Name="Path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PocketMine-Gui</Value>
+    </Setting>
+    <Setting Name="DeveloperMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

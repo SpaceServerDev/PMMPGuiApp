@@ -22,7 +22,7 @@ namespace PMMPGuiApp {
         /// <summary>
         /// Path to the folder
         /// </summary>
-        private string path = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui";
+        private string path = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\" + Properties.Settings.Default.Path;
 
         /// <summary>
         /// execution process
@@ -43,12 +43,12 @@ namespace PMMPGuiApp {
         /// <summary>
         /// Flag to check if a file has been saved.
         /// </summary>
-        private bool filesave = false;
+        private bool filesave;
 
         /// <summary>
         /// Flag to check if the system is stopped
         /// </summary>
-        private bool stop = false;
+        private bool stop;
 
         public MainWindow() {
             InitializeComponent();
@@ -61,7 +61,6 @@ namespace PMMPGuiApp {
 
         private void PMMPINSTALL_Click(object sender, RoutedEventArgs e) {
             startPMMPInstall();
-
         }
 
         private void serverEngine_Click(object sender, RoutedEventArgs e) {
@@ -319,11 +318,11 @@ namespace PMMPGuiApp {
 
         private bool pmmpInstall() {
             string[] urls = new string[] {
-                "https://jenkins.pmmp.io/job/PocketMine-MP/lastSuccessfulBuild/artifact/PocketMine-MP.phar",
-                "https://jenkins.pmmp.io/job/PocketMine-MP/lastBuild/artifact/start.cmd",
-                "https://jenkins.pmmp.io/job/PHP-7.4-Aggregate/lastBuild/artifact/PHP-7.4-Windows-x64.zip",
-                "https://raw.githubusercontent.com/pmmp/PocketMine-MP/stable/composer.json",
-                "https://getcomposer.org/download/latest-stable/composer.phar",
+                Properties.Settings.Default.PocketMineURL,
+                Properties.Settings.Default.StartcmdURL,
+                Properties.Settings.Default.BinURL,
+                Properties.Settings.Default.ComposerJsonURL,
+                Properties.Settings.Default.ComposerPharURL,
                 path + @"\PHP-7.4-Windows-x64.zip",
                 path + @"\vc_redist.x64.exe"
             };
@@ -338,8 +337,7 @@ namespace PMMPGuiApp {
             changeProgressBarVisiblity(Visibility.Visible);
             changeProgressBarValue(0);
 
-            using (System.Net.WebClient wc = new()) {
-                
+            using (System.Net.WebClient wc = new()) { 
                 useSystemMessageInAsync(Properties.Resources.DownloadPMMP + "\n");
                 wc.DownloadFile(urls[0], path + @"\PocketMine-MP.phar");
                 changeProgressBarValue(10);
@@ -354,6 +352,7 @@ namespace PMMPGuiApp {
                         changeProgressBarValue(30);
                         useSystemMessageInAsync(Properties.Resources.ExtractBin + "\n");
                         ZipFile.ExtractToDirectory(urls[5], path);
+                        changeProgressBarValue(40);
                         File.Delete(urls[5]);
                         changeProgressBarValue(50);
                         useSystemMessageInAsync(Properties.Resources.ExecuteRuntime + "\n");
@@ -364,9 +363,9 @@ namespace PMMPGuiApp {
                         changeProgressBarValue(60);
                         wc.DownloadFile(urls[4], path + @"\bin\composer.phar");
                         changeProgressBarValue(80);
-                        wc.Dispose();
                         useSystemMessageInAsync(Properties.Resources.InstallComposer + "\n");
                         composerInstall("cd " + path, powerShell);
+                        changeProgressBarValue(85);
                         composerInstall(@"bin\php\php.exe bin\composer.phar install", powerShell);
                         powerShell.Stop();
                     }
