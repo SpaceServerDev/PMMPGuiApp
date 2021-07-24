@@ -335,25 +335,35 @@ namespace PMMPGuiApp {
 
             DateTime start = DateTime.Now;
 
-            using (System.Net.WebClient wc = new()) {
+            changeProgressBarVisiblity(Visibility.Visible);
+            changeProgressBarValue(0);
 
+            using (System.Net.WebClient wc = new()) {
+                
                 useSystemMessageInAsync(Properties.Resources.DownloadPMMP + "\n");
                 wc.DownloadFile(urls[0], path + @"\PocketMine-MP.phar");
-
+                changeProgressBarValue(10);
                 if (!File.Exists(path + @"\bin\php\php.exe")) {
                     using (PowerShell powerShell = PowerShell.Create()) {
+                        changeProgressBarValue(15);
                         useSystemMessageInAsync(Properties.Resources.DownloadBath + "\n");
                         wc.DownloadFile(urls[1], path + @"\start.cmd");
+                        changeProgressBarValue(20);
                         useSystemMessageInAsync(Properties.Resources.DownloadBin + "\n");
                         wc.DownloadFile(urls[2], path + @"\PHP-7.4-Windows-x64.zip");
+                        changeProgressBarValue(30);
                         useSystemMessageInAsync(Properties.Resources.ExtractBin + "\n");
                         ZipFile.ExtractToDirectory(urls[5], path);
                         File.Delete(urls[5]);
+                        changeProgressBarValue(50);
                         useSystemMessageInAsync(Properties.Resources.ExecuteRuntime + "\n");
                         Process.Start(urls[6]);
+                        changeProgressBarValue(55);
                         useSystemMessageInAsync(Properties.Resources.DownloadComposer + "\n");
                         wc.DownloadFile(urls[3], path + @"\composer.json");
+                        changeProgressBarValue(60);
                         wc.DownloadFile(urls[4], path + @"\bin\composer.phar");
+                        changeProgressBarValue(80);
                         wc.Dispose();
                         useSystemMessageInAsync(Properties.Resources.InstallComposer + "\n");
                         composerInstall("cd " + path, powerShell);
@@ -362,10 +372,11 @@ namespace PMMPGuiApp {
                     }
                 }
             }
-
+            changeProgressBarValue(100);
             DateTime end = DateTime.Now;
             TimeSpan ts = end - start;
             useSystemMessageInAsync(Properties.Resources.InstallComplete + " (" + ts.TotalSeconds + Properties.Resources.Seconds+ ") >> \"" + path + "\"" +  "\n\n");
+            changeProgressBarVisiblity(Visibility.Hidden);
             return false;
         }
 
@@ -422,6 +433,18 @@ namespace PMMPGuiApp {
             textboxApeend("\nCOMMAND >> " + Input_textbox.Text + "\n");
             process.StandardInput.WriteLine(Input_textbox.Text);
             Input_textbox.Text = "";
+        }
+
+        private void changeProgressBarVisiblity(Visibility visibility) {
+            Dispatcher.Invoke(() => {
+                progressBar.Visibility = visibility;
+            });
+        }
+
+        private void changeProgressBarValue(int value) {
+            Dispatcher.Invoke(() => {
+                progressBar.Value = value;
+            });
         }
 
         private void process_DataReceived(object sender, DataReceivedEventArgs e) {
