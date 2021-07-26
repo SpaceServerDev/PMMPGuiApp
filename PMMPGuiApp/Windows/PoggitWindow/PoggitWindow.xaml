@@ -38,19 +38,14 @@
                         <ComboBoxItem Content="{x:Static properties:Resources.TurnDownload}"/>
                     </ComboBox>
                 </Grid>
-
-
                 <Grid Grid.Column="2">
                     <TextBox x:Name="SearchTextBox"  FontSize="12" Margin="0,5,0,10" TextChanged="SearchTextBox_TextChanged"/>
                 </Grid>
             </Grid>
-
             <Grid Grid.Row="1" Margin="10,0,10,0">
                 <TextBox x:Name="label" Text="{x:Static properties:Resources.PoggitDefaultLabel}" IsReadOnly="True"/>
             </Grid>
-
             <Grid Grid.Row="2">
-
                 <ListView x:Name="PluginList" Loaded="PluginList_Loaded" Margin="10,0,10,10">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -72,20 +67,18 @@
                                 </Grid>
                                 <StackPanel Grid.Column="2">
                                     <TextBlock Text="{Binding Name}" FontSize="28">
-                                    <TextBlock Text=" " FontSize="5"/>
-                                    <TextBlock Text="{Binding Version ,StringFormat=Ver{0}}" FontSize="13"/>
-                                </TextBlock>
+                                        <TextBlock Text=" " FontSize="5"/>
+                                        <TextBlock Text="{Binding Version ,StringFormat=Ver{0}}" FontSize="13"/>
+                                    </TextBlock>
                                     <TextBlock Text="{Binding Tagline}" FontSize="20"/>
                                     <TextBlock Text="ApiVersion: " FontSize="12">
-                                    <TextBlock Text="{Binding FromApi}" FontSize="12"/>
-                                    <TextBlock Text="～" FontSize="12"/>
-                                    <TextBlock Text="{Binding ToApi}" FontSize="12"/>
-                                </TextBlock>
+                                        <TextBlock Text="{Binding FromApi}" FontSize="12"/>
+                                        <TextBlock Text="～" FontSize="12"/>
+                                        <TextBlock Text="{Binding ToApi}" FontSize="12"/>
+                                    </TextBlock>
                                     <TextBlock>
-                                    <TextBlock Text="{Binding Download,StringFormat=Download: {0}}" FontSize="12"/>  
-                                </TextBlock>
-
-
+                                        <TextBlock Text="{Binding Download,StringFormat=Download: {0}}" FontSize="12"/>  
+                                    </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>

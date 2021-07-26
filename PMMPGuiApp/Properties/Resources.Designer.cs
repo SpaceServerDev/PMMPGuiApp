@@ -460,6 +460,15 @@ namespace PMMPGuiApp.Properties {
         }
         
         /// <summary>
+        ///   Option に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Option {
+            get {
+                return ResourceManager.GetString("Option", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Other(_O) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Other {

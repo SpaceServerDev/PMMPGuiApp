@@ -87,7 +87,7 @@ namespace PMMPGuiApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("PocketMine-Gui")]
+        [global::System.Configuration.DefaultSettingValueAttribute("PocketMine-MP")]
         public string Path {
             get {
                 return ((string)(this["Path"]));

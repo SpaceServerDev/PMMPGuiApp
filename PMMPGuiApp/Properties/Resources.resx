@@ -296,6 +296,10 @@ the Free Software Foundation, either version 3 of the License, or
     <value>The only valid server engine name is "PocketMine-MP.phar".</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="Option" xml:space="preserve">
+    <value>Option</value>
+    <comment>MainWindow.xaml</comment>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>Other(_O)</value>
     <comment>MainWindow.xaml</comment>

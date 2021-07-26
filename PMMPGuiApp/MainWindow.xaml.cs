@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
 using PMMPGuiApp.Data;
+using PMMPGuiApp.Windows.OptionWindow;
+using PMMPGuiApp.Windows.PMMPOptionWindow;
 using PMMPGuiApp.Windows.PoggitWindow;
 using System;
 using System.ComponentModel;
@@ -22,7 +24,7 @@ namespace PMMPGuiApp {
         /// <summary>
         /// Path to the folder
         /// </summary>
-        private string path = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\" + Properties.Settings.Default.Path;
+        private string path = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PMMPGui\" + Properties.Settings.Default.Path;
 
         /// <summary>
         /// execution process
@@ -125,7 +127,6 @@ namespace PMMPGuiApp {
                         info.RedirectStandardError = true;
                         info.CreateNoWindow = true;
                         info.StandardOutputEncoding = Encoding.UTF8;
-
                         process.StartInfo = info;
                         process.OutputDataReceived += new DataReceivedEventHandler(process_DataReceived);
                         process.Start();
@@ -164,6 +165,7 @@ namespace PMMPGuiApp {
                     });
                     stop = false;
                     process.Kill();
+                    process.Dispose();
                     changeStartText();
                     textboxApeendToAddTimestamp(Properties.Resources.StoppedPMMP);
                 }
@@ -211,6 +213,12 @@ namespace PMMPGuiApp {
 
         private void PMMPOption_Click(object sender, RoutedEventArgs e) {
 
+        }
+
+        private void PMMPGuiSettings_Click(object sender, RoutedEventArgs e) {
+            OptionWindow window = new();
+            window.Owner = this;
+            window.ShowDialog();
         }
 
 
@@ -433,18 +441,18 @@ namespace PMMPGuiApp {
         }
 
         private void process_DataReceived(object sender, DataReceivedEventArgs e) {
+            if (filesave) {
+                if (processData.getProcess() != getPMMPProcessId()) {
+                    processData.setProcess(getPMMPProcessId().ToString());
+                    filesave = false;
+                }
+            }
             useTextBoxInAsync(e.Data + "\n");
         }
 
         private void useTextBoxInAsync(string str) {
             Dispatcher.Invoke(() => {
-                if (!isOpenPMMP()) return;
-                if (filesave) {
-                    if (processData.getProcess() != getPMMPProcessId()) {
-                        processData.setProcess(getPMMPProcessId().ToString());
-                        filesave = false;
-                    }
-                }
+                
                 textboxApeend(str);
             });
         }
@@ -501,5 +509,7 @@ namespace PMMPGuiApp {
             }
             return -1;
         }
+
+        
     }
 }

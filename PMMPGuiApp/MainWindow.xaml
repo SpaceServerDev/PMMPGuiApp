@@ -20,6 +20,8 @@
                 <MenuItem Header="{x:Static properties:Resources.Edit}">
                     <MenuItem Header="サーバーの設定を変更" Click="Propeties_Click"/>
                     <MenuItem Header="pocketmineの設定を変更" Click="PMMPOption_Click"/>
+                    <Separator />
+                    <MenuItem Header="{x:Static properties:Resources.Option}" Click="PMMPGuiSettings_Click"/>
                 </MenuItem>
                 <MenuItem Header="{x:Static properties:Resources.Run}">
                     <MenuItem x:Name="MenuItem_open_button" Header="{x:Static properties:Resources.ExecutePMMP}" Click="executePMMP_Click"/>

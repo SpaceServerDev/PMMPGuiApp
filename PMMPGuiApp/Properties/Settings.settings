@@ -18,7 +18,7 @@
       <Value Profile="(Default)">https://getcomposer.org/download/latest-stable/composer.phar</Value>
     </Setting>
     <Setting Name="Path" Type="System.String" Scope="User">
-      <Value Profile="(Default)">PocketMine-Gui</Value>
+      <Value Profile="(Default)">PocketMine-MP</Value>
     </Setting>
     <Setting Name="DeveloperMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

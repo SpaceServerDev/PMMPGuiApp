@@ -296,6 +296,10 @@ the Free Software Foundation, either version 3 of the License, or
     <value>サーバーエンジンの名前は"PocketMine-MP.phar"のみ有効です。</value>
     <comment>MainWindow.xaml.cs</comment>
   </data>
+  <data name="Option" xml:space="preserve">
+    <value>オプション</value>
+    <comment>MainWindow.xaml</comment>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>その他(_O)</value>
     <comment>MainWindow.xaml</comment>

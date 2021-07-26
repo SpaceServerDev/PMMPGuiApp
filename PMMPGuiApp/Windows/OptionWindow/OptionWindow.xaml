@@ -1,0 +1,31 @@
+﻿<Window x:Class="PMMPGuiApp.Windows.OptionWindow.OptionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PMMPGuiApp.Windows.OptionWindow"
+        mc:Ignorable="d"
+        Title="PMMPGui - Option"
+        Height="400" Width="600"
+        ResizeMode="NoResize">
+    <Grid>
+        <DockPanel>
+            <TabControl  DockPanel.Dock="Top">
+                <TabItem Header="全般">
+                    <StackPanel>
+                        <Label Content="・保存するフォルダのパス"/>
+                        <DockPanel>
+                            <TextBlock x:Name="pathLabel" Text=""  FontSize="15" Loaded="pathLabel_Loaded"/>
+                            <TextBox Text="PocketMine-MP" Margin="5,0,10,0"/>
+                        </DockPanel>
+                        
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="上級者向け">
+
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+        
+    </Grid>
+</Window>
