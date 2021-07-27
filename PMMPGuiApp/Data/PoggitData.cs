@@ -168,8 +168,8 @@ namespace PMMPGuiApp.Data {
                 return new RelayCommand(() => {
                     if (!download) {
                         using (System.Net.WebClient wc = new()) {
-                            Directory.CreateDirectory(System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui\plugins\");
-                            wc.DownloadFile(DownloadUrl, System.Environment.GetFolderPath(Environment.SpecialFolder.Personal) + @"\PocketMine-Gui\plugins\" + Name + ".phar");
+                            Directory.CreateDirectory(window.getPath() + @"\plugins");
+                            wc.DownloadFile(DownloadUrl, window.getPath() + @"\plugins\" + Name + ".phar");
                             download = true;
                             window.textboxApeendToAddTimestamp("[PluginManager] Install>>" + Name + "\n");
                             sub.AddPlugin(Name);

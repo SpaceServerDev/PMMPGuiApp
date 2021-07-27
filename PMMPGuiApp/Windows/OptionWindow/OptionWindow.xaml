@@ -12,14 +12,22 @@
         <DockPanel>
             <TabControl  DockPanel.Dock="Top">
                 <TabItem Header="全般">
-                    <StackPanel>
-                        <Label Content="・保存するフォルダのパス"/>
-                        <DockPanel>
-                            <TextBlock x:Name="pathLabel" Text=""  FontSize="15" Loaded="pathLabel_Loaded"/>
-                            <TextBox Text="PocketMine-MP" Margin="5,0,10,0"/>
-                        </DockPanel>
-                        
-                    </StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Label Content="・保存するフォルダのパス"/>
+                            <DockPanel>
+                                <TextBlock x:Name="pathLabel" Text=""  FontSize="15" Loaded="pathLabel_Loaded"/>
+                                <TextBox Text="PocketMine-MP" Margin="5,0,10,0"/>
+                            </DockPanel>
+                        </StackPanel>
+                        <Grid Grid.Row="1">
+                            <Button HorizontalAlignment="Right" Margin="0,2,5,0" Width="60"/>
+                        </Grid>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="上級者向け">
 

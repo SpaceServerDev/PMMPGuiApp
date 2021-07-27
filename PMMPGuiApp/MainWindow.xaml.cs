@@ -119,8 +119,13 @@ namespace PMMPGuiApp {
                     await Task.Run(() => {
                         process = new Process();
                         ProcessStartInfo info = new ProcessStartInfo();
-                        info.FileName = "cmd.exe";
-                        info.Arguments = "/C " + path + @"\start.cmd";
+                        info.FileName = path + @"\bin\php\php.exe";
+                        if (Properties.Settings.Default.DeveloperMode) {
+                            info.Arguments = path + @"\src\pocketmine\PocketMine.php";
+                        } else {
+                            info.Arguments = path + @"\PocketMine-MP.phar";
+                        }
+                        info.WorkingDirectory = path;
                         info.RedirectStandardInput = true;
                         info.UseShellExecute = false;
                         info.RedirectStandardOutput = true;
@@ -199,6 +204,7 @@ namespace PMMPGuiApp {
                 try {
                     if (Process.GetProcessById(processData.getProcess()).ProcessName == "php") {
                         Process.GetProcessById(processData.getProcess()).Kill();
+                        Process.GetProcessById(processData.getProcess()).Dispose();
                         textboxApeendToAddTimestamp(Properties.Resources.KillingPMMP);
                     }
                 } catch {
@@ -229,9 +235,7 @@ namespace PMMPGuiApp {
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                     Filter = Properties.Resources.PharFile + "|*.phar",
                 };
-
                 if (open.ShowDialog() != true) return;
-
                 if (File.Exists(path + @"\plugins\" + Path.GetFileName(open.FileName))) File.Delete(path + @"\plugins\" + Path.GetFileName(open.FileName));
                 File.Copy(open.FileName, path + @"\plugins\" + Path.GetFileName(open.FileName));
                 textboxApeendToAddTimestamp(Properties.Resources.Introduction + " >> " + Path.GetFileNameWithoutExtension(open.FileName));
@@ -283,7 +287,6 @@ namespace PMMPGuiApp {
                     e.Cancel = true;
                     return;
                 }
-
             }
             if (isOpenPMMP()) {
                 MessageBoxResult result = MessageBox.Show(Properties.Resources.RunningPMMP + Properties.Resources.ConfirmKillPMMP + "\n*" + Properties.Resources.NotBeSavedforPMMPisRunning, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -292,7 +295,6 @@ namespace PMMPGuiApp {
                     return;
                 }
             }
-
             if (process != null) {
                 string taskkill = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe");
                 using (var procKiller = new System.Diagnostics.Process()) {
@@ -319,15 +321,6 @@ namespace PMMPGuiApp {
         }
 
         private bool pmmpInstall() {
-            string[] urls = new string[] {
-                Properties.Settings.Default.PocketMineURL,
-                Properties.Settings.Default.StartcmdURL,
-                Properties.Settings.Default.BinURL,
-                Properties.Settings.Default.ComposerJsonURL,
-                Properties.Settings.Default.ComposerPharURL,
-                path + @"\PHP-7.4-Windows-x64.zip",
-                path + @"\vc_redist.x64.exe"
-            };
             if (!Environment.Is64BitProcess) {
                 MessageBox.Show(Properties.Resources.NotExecute32bit, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -337,29 +330,29 @@ namespace PMMPGuiApp {
             changeProgressBarValue(0);
             using (System.Net.WebClient wc = new()) {
                 useSystemMessageInAsync(Properties.Resources.DownloadPMMP + "\n");
-                wc.DownloadFile(urls[0], path + @"\PocketMine-MP.phar");
+                wc.DownloadFile(Properties.Settings.Default.PocketMineURL, path + @"\PocketMine-MP.phar");
                 changeProgressBarValue(10);
                 if (!File.Exists(path + @"\bin\php\php.exe")) {
                     using (PowerShell powerShell = PowerShell.Create()) {
                         changeProgressBarValue(15);
                         useSystemMessageInAsync(Properties.Resources.DownloadBath + "\n");
-                        wc.DownloadFile(urls[1], path + @"\start.cmd");
+                        wc.DownloadFile(Properties.Settings.Default.StartcmdURL, path + @"\start.cmd");
                         changeProgressBarValue(20);
                         useSystemMessageInAsync(Properties.Resources.DownloadBin + "\n");
-                        wc.DownloadFile(urls[2], path + @"\PHP-7.4-Windows-x64.zip");
+                        wc.DownloadFile(Properties.Settings.Default.BinURL, path + @"\PHP-7.4-Windows-x64.zip");
                         changeProgressBarValue(30);
                         useSystemMessageInAsync(Properties.Resources.ExtractBin + "\n");
-                        ZipFile.ExtractToDirectory(urls[5], path);
+                        ZipFile.ExtractToDirectory(path + @"\PHP-7.4-Windows-x64.zip", path);
                         changeProgressBarValue(40);
-                        File.Delete(urls[5]);
+                        File.Delete(path + @"\PHP-7.4-Windows-x64.zip");
                         changeProgressBarValue(50);
                         useSystemMessageInAsync(Properties.Resources.ExecuteRuntime + "\n");
-                        Process.Start(urls[6]);
+                        Process.Start(path + @"\vc_redist.x64.exe");
                         changeProgressBarValue(55);
                         useSystemMessageInAsync(Properties.Resources.DownloadComposer + "\n");
-                        wc.DownloadFile(urls[3], path + @"\composer.json");
+                        wc.DownloadFile(Properties.Settings.Default.ComposerJsonURL, path + @"\composer.json");
                         changeProgressBarValue(60);
-                        wc.DownloadFile(urls[4], path + @"\bin\composer.phar");
+                        wc.DownloadFile(Properties.Settings.Default.ComposerPharURL, path + @"\bin\composer.phar");
                         changeProgressBarValue(80);
                         useSystemMessageInAsync(Properties.Resources.InstallComposer + "\n");
                         usePowerShell("cd " + path, powerShell);
@@ -433,11 +426,11 @@ namespace PMMPGuiApp {
         }
 
         private void changeProgressBarVisiblity(Visibility visibility) {
-            Dispatcher.Invoke(() => { progressBar.Visibility = visibility; });
+            Dispatcher.Invoke(() =>  progressBar.Visibility = visibility);
         }
 
         private void changeProgressBarValue(int value) {
-            Dispatcher.Invoke(() => { progressBar.Value = value; });
+            Dispatcher.Invoke(() =>  progressBar.Value = value);
         }
 
         private void process_DataReceived(object sender, DataReceivedEventArgs e) {
@@ -447,15 +440,9 @@ namespace PMMPGuiApp {
                     filesave = false;
                 }
             }
-            useTextBoxInAsync(e.Data + "\n");
+            Dispatcher.Invoke(() => textboxApeend(e.Data + "\n"));
         }
 
-        private void useTextBoxInAsync(string str) {
-            Dispatcher.Invoke(() => {
-                
-                textboxApeend(str);
-            });
-        }
 
         private void useSystemMessageInAsync(string str) {
             Dispatcher.Invoke(() => {
@@ -489,27 +476,23 @@ namespace PMMPGuiApp {
             open_button.Content = Properties.Resources.StopPMMP;
         }
 
+        public string getPath() {
+            return path;
+        }
+
         private bool isOpenPMMP() {
             if (process == null) return false;
             try {
-                ManagementObjectSearcher mos = new(String.Format("Select * From Win32_Process Where ParentProcessID={0}", process.Id));
-                foreach (ManagementObject mo in mos.Get()) {
-                    if (Process.GetProcessById(Convert.ToInt32(mo["ProcessID"])).ProcessName == "php") return true;
-                }
-            } catch { }
+                if (Process.GetProcessById(process.Id).ProcessName == "php") return true;
+            } catch (InvalidOperationException) { }
             return false;
         }
 
         private int getPMMPProcessId() {
-            ManagementObjectSearcher mos = new(String.Format("Select * From Win32_Process Where ParentProcessID={0}", process.Id));
-            foreach (ManagementObject mo in mos.Get()) {
-                try {
-                    if (Process.GetProcessById(Convert.ToInt32(mo["ProcessID"])).ProcessName == "php") return Convert.ToInt32(mo["ProcessID"]);
-                } catch (InvalidOperationException) { }
-            }
+            try {
+               if (Process.GetProcessById(process.Id).ProcessName == "php") return Convert.ToInt32(process.Id);
+           } catch (InvalidOperationException) { }
             return -1;
         }
-
-        
     }
 }
