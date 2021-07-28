@@ -35,7 +35,7 @@ namespace PMMPGuiApp {
         /// Class that stores the ID of the process.
         /// </summary>
 
-        private ProcessData processData = new ProcessData();
+        private ProcessData processData = new();
 
         /// <summary>
         /// True while downloading.
@@ -72,14 +72,11 @@ namespace PMMPGuiApp {
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                     Filter = Properties.Resources.PharFile + "|*.phar",
                 };
-
                 if (open.ShowDialog() != true) return;
-
                 if (Path.GetFileName(open.FileName) != "PocketMine-MP.phar") {
                     MessageBox.Show(Properties.Resources.NotMatchServerEngineFileName, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-
                 if (File.Exists(path + @"\PocketMine-MP.phar")) File.Delete(path + @"\PocketMine-MP.phar");
                 File.Copy(open.FileName, path + @"\" + Path.GetFileName(open.FileName));
                 textboxApeendToAddTimestamp(Properties.Resources.IntroducingTheCustomServerEngine);
@@ -95,7 +92,6 @@ namespace PMMPGuiApp {
         public void exit_click(object sender, RoutedEventArgs e) {
             Application.Current.MainWindow.Close();
         }
-
 
         private async void executePMMP_Click(object sender, RoutedEventArgs e) {
             if (download) {
@@ -187,6 +183,10 @@ namespace PMMPGuiApp {
                     return;
                 }
             }
+            if (stop) {
+                textboxApeendToAddTimestamp(Properties.Resources.StoppingPMMPNow);
+                return;
+            }
             MessageBoxResult result = MessageBox.Show(Properties.Resources.ConfirmKillPMMP, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.No) return;
             if (process != null) {
@@ -230,7 +230,7 @@ namespace PMMPGuiApp {
 
         private void SelectPlugin_Click(object sender, RoutedEventArgs e) {
             if (!isOpenPMMP()) {
-                OpenFileDialog open = new OpenFileDialog() {
+                OpenFileDialog open = new() {
                     Title = Properties.Resources.PleaseSelectPlugin,
                     InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                     Filter = Properties.Resources.PharFile + "|*.phar",
@@ -243,8 +243,6 @@ namespace PMMPGuiApp {
                 MessageBox.Show(Properties.Resources.NotDownloadforPMMPisRunning, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
-
 
         private void SearchPoggit_Click(object sender, RoutedEventArgs e) {
             if (download) {
@@ -288,6 +286,11 @@ namespace PMMPGuiApp {
                     return;
                 }
             }
+            if (stop) {
+                MessageBox.Show(Properties.Resources.StoppingPMMPNow, "PMMPGUI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                e.Cancel = true;
+                return;
+            }
             if (isOpenPMMP()) {
                 MessageBoxResult result = MessageBox.Show(Properties.Resources.RunningPMMP + Properties.Resources.ConfirmKillPMMP + "\n*" + Properties.Resources.NotBeSavedforPMMPisRunning, "PMMPGUI", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.No) {
@@ -297,7 +300,7 @@ namespace PMMPGuiApp {
             }
             if (process != null) {
                 string taskkill = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe");
-                using (var procKiller = new System.Diagnostics.Process()) {
+                using (Process procKiller = new System.Diagnostics.Process()) {
                     try {
                         procKiller.StartInfo.FileName = taskkill;
                         procKiller.StartInfo.Arguments = string.Format("/PID {0} /T /F", process.Id);
@@ -443,7 +446,6 @@ namespace PMMPGuiApp {
             Dispatcher.Invoke(() => textboxApeend(e.Data + "\n"));
         }
 
-
         private void useSystemMessageInAsync(string str) {
             Dispatcher.Invoke(() => {
                 if (!isOpenPMMP()) changeStartText();
@@ -457,13 +459,13 @@ namespace PMMPGuiApp {
             Output_textbox.ScrollToEnd();
         }
 
-        private void textboxApeend(String str) {
+        private void textboxApeend(string str) {
             Output_textbox.AppendText(str);
             Output_textbox.ScrollToEnd();
         }
 
         private void asyncStartText() {
-            Dispatcher.Invoke(() => { changeStartText(); });
+            Dispatcher.Invoke(() => changeStartText());
         }
 
         private void changeStartText() {
