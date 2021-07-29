@@ -35,7 +35,7 @@ namespace PMMPGuiApp {
         /// Class that stores the ID of the process.
         /// </summary>
 
-        private ProcessData processData = new();
+        private readonly ProcessData processData = new();
 
         /// <summary>
         /// True while downloading.
