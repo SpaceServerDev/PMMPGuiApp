@@ -332,6 +332,7 @@ namespace PMMPGuiApp {
             changeProgressBarVisiblity(Visibility.Visible);
             changeProgressBarValue(0);
             using (System.Net.WebClient wc = new()) {
+                if (File.Exists(path + @"\PocketMine-MP.phar")) File.Delete(path + @"\PocketMine-MP.phar");
                 useSystemMessageInAsync(Properties.Resources.DownloadPMMP + "\n");
                 wc.DownloadFile(Properties.Settings.Default.PocketMineURL, path + @"\PocketMine-MP.phar");
                 changeProgressBarValue(10);
@@ -342,12 +343,13 @@ namespace PMMPGuiApp {
                         wc.DownloadFile(Properties.Settings.Default.StartcmdURL, path + @"\start.cmd");
                         changeProgressBarValue(20);
                         useSystemMessageInAsync(Properties.Resources.DownloadBin + "\n");
-                        wc.DownloadFile(Properties.Settings.Default.BinURL, path + @"\PHP-7.4-Windows-x64.zip");
+                        wc.DownloadFile(Properties.Settings.Default.BinURL, path + @"\PHP-8.0-Windows-x64.zip");
                         changeProgressBarValue(30);
+                        if (File.Exists(path + @"\vc_redist.x64.exe")) File.Delete(path + @"\vc_redist.x64.exe");
                         useSystemMessageInAsync(Properties.Resources.ExtractBin + "\n");
-                        ZipFile.ExtractToDirectory(path + @"\PHP-7.4-Windows-x64.zip", path);
+                        ZipFile.ExtractToDirectory(path + @"\PHP-8.0-Windows-x64.zip", path);
                         changeProgressBarValue(40);
-                        File.Delete(path + @"\PHP-7.4-Windows-x64.zip");
+                        File.Delete(path + @"\PHP-8.0-Windows-x64.zip");
                         changeProgressBarValue(50);
                         useSystemMessageInAsync(Properties.Resources.ExecuteRuntime + "\n");
                         Process.Start(path + @"\vc_redist.x64.exe");

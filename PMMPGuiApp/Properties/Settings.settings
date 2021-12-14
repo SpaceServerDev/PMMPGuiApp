@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="PocketMineURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://jenkins.pmmp.io/job/PocketMine-MP/lastSuccessfulBuild/artifact/PocketMine-MP.phar</Value>
+      <Value Profile="(Default)">https://github.com/pmmp/PocketMine-MP/releases/latest/download/PocketMine-MP.phar</Value>
     </Setting>
     <Setting Name="StartcmdURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://jenkins.pmmp.io/job/PocketMine-MP/lastBuild/artifact/start.cmd</Value>
+      <Value Profile="(Default)">https://github.com/pmmp/PocketMine-MP/releases/latest/download/start.cmd</Value>
     </Setting>
     <Setting Name="BinURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://jenkins.pmmp.io/job/PHP-7.4-Aggregate/lastBuild/artifact/PHP-7.4-Windows-x64.zip</Value>
+      <Value Profile="(Default)">https://jenkins.pmmp.io/job/PHP-8.0-Aggregate/lastSuccessfulBuild/artifact/PHP-8.0-Windows-x64.zip</Value>
     </Setting>
     <Setting Name="ComposerJsonURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://raw.githubusercontent.com/pmmp/PocketMine-MP/stable/composer.json</Value>

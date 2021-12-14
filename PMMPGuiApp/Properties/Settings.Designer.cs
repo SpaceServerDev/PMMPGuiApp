@@ -12,7 +12,7 @@ namespace PMMPGuiApp.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.0.3.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,8 +25,8 @@ namespace PMMPGuiApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://jenkins.pmmp.io/job/PocketMine-MP/lastSuccessfulBuild/artifact/PocketMine" +
-            "-MP.phar")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/pmmp/PocketMine-MP/releases/latest/download/PocketMine-MP.phar" +
+            "")]
         public string PocketMineURL {
             get {
                 return ((string)(this["PocketMineURL"]));
@@ -38,7 +38,7 @@ namespace PMMPGuiApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://jenkins.pmmp.io/job/PocketMine-MP/lastBuild/artifact/start.cmd")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/pmmp/PocketMine-MP/releases/latest/download/start.cmd")]
         public string StartcmdURL {
             get {
                 return ((string)(this["StartcmdURL"]));
@@ -50,8 +50,8 @@ namespace PMMPGuiApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://jenkins.pmmp.io/job/PHP-7.4-Aggregate/lastBuild/artifact/PHP-7.4-Windows-" +
-            "x64.zip")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://jenkins.pmmp.io/job/PHP-8.0-Aggregate/lastSuccessfulBuild/artifact/PHP-8." +
+            "0-Windows-x64.zip")]
         public string BinURL {
             get {
                 return ((string)(this["BinURL"]));
